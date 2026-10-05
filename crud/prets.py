@@ -1,7 +1,7 @@
-import math
 from datetime import datetime, timedelta
+from bson import ObjectId
 from pymongo.errors import PyMongoError
-from database import get_db
+from config import get_db
 
 STATUTS_PRET = ["en_cours", "solde", "en_retard"]
 
@@ -10,11 +10,6 @@ def calculer_echeancier(montant, taux, duree, date_octroi=None):
     Calcule l'échéancier mensuel d'un prêt bancaire.
     Formule de la mensualité constante :
     M = P * (r * (1 + r)^n) / ((1 + r)^n - 1)
-    où :
-      - P = montant du prêt (capital)
-      - r = taux d'intérêt mensuel (taux annuel / 100 / 12)
-      - n = durée en mois
-    Si le taux est 0, M = P / n.
     """
     if date_octroi is None:
         start_date = datetime.now()
@@ -41,7 +36,6 @@ def calculer_echeancier(montant, taux, duree, date_octroi=None):
 
     current_date = start_date
     for i in range(1, duree + 1):
-        # Ajout d'un mois approximatif (30 jours)
         current_date += timedelta(days=30)
         echeancier.append({
             "num_echeance": i,
@@ -59,13 +53,12 @@ def creer_pret(membre, montant, taux, duree, date_octroi=None):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return None
 
-    # Vérification membre
     membre_doc = db.membres.find_one({"numero": membre})
     if not membre_doc:
-        print(f"❌ Membre introuvable ('{membre}').")
+        print(f"[Erreur] Membre introuvable ('{membre}').")
         return None
 
     if date_octroi is None:
@@ -86,10 +79,10 @@ def creer_pret(membre, montant, taux, duree, date_octroi=None):
     try:
         res = db.prets.insert_one(doc)
         doc["_id"] = res.inserted_id
-        print(f"✓ Opération effectuée avec succès. Prêt de {montant:,.0f} FCFA accordé au membre {membre}.")
+        print(f"[OK] Opération effectuée avec succès. Prêt de {montant:,.0f} FCFA accordé au membre {membre}.")
         return doc
     except PyMongoError:
-        print("❌ Erreur lors de la création du prêt.")
+        print("[Erreur] Erreur lors de la création du prêt.")
         return None
 
 def obtenir_pret(pret_id):
@@ -98,20 +91,19 @@ def obtenir_pret(pret_id):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return None
 
     try:
-        from bson import ObjectId
         if isinstance(pret_id, str):
             pret_id = ObjectId(pret_id)
         pret = db.prets.find_one({"_id": pret_id})
         if not pret:
-            print("❌ Prêt introuvable.")
+            print("[Erreur] Prêt introuvable.")
             return None
         return pret
     except Exception:
-        print("❌ Prêt introuvable.")
+        print("[Erreur] Prêt introuvable.")
         return None
 
 def lister_prets_membre(numero_membre):
@@ -120,13 +112,13 @@ def lister_prets_membre(numero_membre):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return []
 
     try:
         return list(db.prets.find({"membre": numero_membre}))
     except PyMongoError:
-        print("❌ Erreur lors de la recherche des prêts du membre.")
+        print("[Erreur] Erreur lors de la recherche des prêts du membre.")
         return []
 
 def enregistrer_paiement_echeance(pret_id, index_echeance, date_paiement=None):
@@ -136,7 +128,7 @@ def enregistrer_paiement_echeance(pret_id, index_echeance, date_paiement=None):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return False
 
     if date_paiement is None:
@@ -148,11 +140,11 @@ def enregistrer_paiement_echeance(pret_id, index_echeance, date_paiement=None):
 
     echeancier = pret.get("echeancier", [])
     if index_echeance < 0 or index_echeance >= len(echeancier):
-        print("❌ Numéro d'échéance invalide.")
+        print("[Erreur] Numéro d'échéance invalide.")
         return False
 
     if echeancier[index_echeance]["paye"]:
-        print("⚠️ Cette échéance est déjà payée.")
+        print("[Attention] Cette échéance est déjà payée.")
         return False
 
     echeancier[index_echeance]["paye"] = True
@@ -163,20 +155,16 @@ def enregistrer_paiement_echeance(pret_id, index_echeance, date_paiement=None):
             {"_id": pret["_id"]},
             {"$set": {"echeancier": echeancier}}
         )
-        print("✓ Opération effectuée avec succès. Échéance enregistrée comme payée.")
+        print("[OK] Opération effectuée avec succès. Échéance enregistrée comme payée.")
         mettre_a_jour_statut_pret(pret["_id"])
         return True
     except PyMongoError:
-        print("❌ Erreur lors du paiement de l'échéance.")
+        print("[Erreur] Erreur lors du paiement de l'échéance.")
         return False
 
 def mettre_a_jour_statut_pret(pret_id):
     """
-    Re-calcule et met à jour le statut du prêt :
-      - 'solde' : toutes les échéances sont payées
-      - 'en_retard' : au moins une échéance impayée est dépassée par rapport à aujourd'hui
-      - 'en_cours' : sinon
-    Si le prêt est 'solde', déclenche automatiquement son archivage.
+    Re-calcule et met à jour le statut du prêt.
     """
     db = get_db()
     if db is None:
@@ -225,7 +213,6 @@ def archiver_pret_solde(pret_id):
         return False
 
     try:
-        from bson import ObjectId
         if isinstance(pret_id, str):
             pret_id = ObjectId(pret_id)
 
@@ -238,10 +225,10 @@ def archiver_pret_solde(pret_id):
 
         db.prets_archives.insert_one(pret_archive)
         db.prets.delete_one({"_id": pret_id})
-        print(f"✓ Prêt {pret_id} archivé avec succès vers 'prets_archives'.")
+        print(f"[OK] Prêt {pret_id} archivé avec succès vers 'prets_archives'.")
         return True
     except PyMongoError:
-        print("❌ Erreur lors de l'archivage du prêt.")
+        print("[Erreur] Erreur lors de l'archivage du prêt.")
         return False
 
 def archiver_tous_prets_soldes():
@@ -250,7 +237,7 @@ def archiver_tous_prets_soldes():
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return 0
 
     try:
@@ -259,8 +246,8 @@ def archiver_tous_prets_soldes():
         for pret in prets_soldes:
             if archiver_pret_solde(pret["_id"]):
                 count += 1
-        print(f"✓ {count} prêt(s) soldé(s) archivé(s).")
+        print(f"[OK] {count} prêt(s) soldé(s) archivé(s).")
         return count
     except PyMongoError:
-        print("❌ Erreur lors de l'archivage global des prêts.")
+        print("[Erreur] Erreur lors de l'archivage global des prêts.")
         return 0

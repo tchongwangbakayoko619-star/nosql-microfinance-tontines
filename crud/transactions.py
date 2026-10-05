@@ -1,8 +1,7 @@
 import uuid
 from datetime import datetime
 from pymongo.errors import PyMongoError
-from database import get_client, get_db
-from config import MONGO_DB
+from config import MONGO_DB, get_db, get_client
 
 CANAUX_AUTORISES = ["agence", "mobile_money"]
 
@@ -12,29 +11,29 @@ def effectuer_depot(numero_compte, montant, canal="agence"):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return None
 
     if canal not in CANAUX_AUTORISES:
-        print(f"❌ Canal invalide. Canaux autorisés : {CANAUX_AUTORISES}")
+        print(f"[Erreur] Canal invalide. Canaux autorisés : {CANAUX_AUTORISES}")
         return None
 
     try:
         montant = float(montant)
         if montant <= 0:
-            print("❌ Montant invalide.")
+            print("[Erreur] Montant invalide.")
             return None
     except (ValueError, TypeError):
-        print("❌ Montant invalide.")
+        print("[Erreur] Montant invalide.")
         return None
 
     compte = db.comptes.find_one({"numero": numero_compte})
     if not compte:
-        print("❌ Compte introuvable.")
+        print("[Erreur] Compte introuvable.")
         return None
 
     if compte.get("statut") != "actif":
-        print("❌ Compte inactif ou clôturé.")
+        print("[Erreur] Compte inactif ou clôturé.")
         return None
 
     date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -56,10 +55,10 @@ def effectuer_depot(numero_compte, montant, canal="agence"):
         }
         db.transactions.insert_one(trans_doc)
 
-        print(f"✓ Opération effectuée avec succès. Dépôt de {montant:,.0f} FCFA réalisé sur le compte {numero_compte}.")
+        print(f"[OK] Opération effectuée avec succès. Dépôt de {montant:,.0f} FCFA réalisé sur le compte {numero_compte}.")
         return trans_doc
     except PyMongoError:
-        print("❌ Erreur lors de l'exécution du dépôt.")
+        print("[Erreur] Erreur lors de l'exécution du dépôt.")
         return None
 
 def effectuer_retrait(numero_compte, montant, canal="agence"):
@@ -68,33 +67,33 @@ def effectuer_retrait(numero_compte, montant, canal="agence"):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return None
 
     if canal not in CANAUX_AUTORISES:
-        print(f"❌ Canal invalide. Canaux autorisés : {CANAUX_AUTORISES}")
+        print(f"[Erreur] Canal invalide. Canaux autorisés : {CANAUX_AUTORISES}")
         return None
 
     try:
         montant = float(montant)
         if montant <= 0:
-            print("❌ Montant invalide.")
+            print("[Erreur] Montant invalide.")
             return None
     except (ValueError, TypeError):
-        print("❌ Montant invalide.")
+        print("[Erreur] Montant invalide.")
         return None
 
     compte = db.comptes.find_one({"numero": numero_compte})
     if not compte:
-        print("❌ Compte introuvable.")
+        print("[Erreur] Compte introuvable.")
         return None
 
     if compte.get("statut") != "actif":
-        print("❌ Compte inactif ou clôturé.")
+        print("[Erreur] Compte inactif ou clôturé.")
         return None
 
     if compte.get("solde", 0) < montant:
-        print("❌ Solde insuffisant.")
+        print("[Erreur] Solde insuffisant.")
         return None
 
     date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -107,7 +106,7 @@ def effectuer_retrait(numero_compte, montant, canal="agence"):
         )
 
         if res.modified_count == 0:
-            print("❌ Solde insuffisant.")
+            print("[Erreur] Solde insuffisant.")
             return None
 
         trans_doc = {
@@ -120,10 +119,10 @@ def effectuer_retrait(numero_compte, montant, canal="agence"):
         }
         db.transactions.insert_one(trans_doc)
 
-        print(f"✓ Opération effectuée avec succès. Retrait de {montant:,.0f} FCFA effectué sur le compte {numero_compte}.")
+        print(f"[OK] Opération effectuée avec succès. Retrait de {montant:,.0f} FCFA effectué sur le compte {numero_compte}.")
         return trans_doc
     except PyMongoError:
-        print("❌ Erreur lors de l'exécution du retrait.")
+        print("[Erreur] Erreur lors de l'exécution du retrait.")
         return None
 
 def effectuer_virement(compte_source, compte_destination, montant, canal="agence"):
@@ -132,20 +131,20 @@ def effectuer_virement(compte_source, compte_destination, montant, canal="agence
     """
     client = get_client(silent=True)
     if client is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return False
 
     try:
         montant = float(montant)
         if montant <= 0:
-            print("❌ Montant invalide.")
+            print("[Erreur] Montant invalide.")
             return False
     except (ValueError, TypeError):
-        print("❌ Montant invalide.")
+        print("[Erreur] Montant invalide.")
         return False
 
     if compte_source == compte_destination:
-        print("❌ Virement impossible : les comptes source et destination doivent être différents.")
+        print("[Erreur] Virement impossible : les comptes source et destination doivent être différents.")
         return False
 
     ref_virement = f"VIR-{uuid.uuid4().hex[:8].upper()}"
@@ -218,17 +217,16 @@ def effectuer_virement(compte_source, compte_destination, montant, canal="agence
         # Vraie transaction multi-documents MongoDB
         with client.start_session() as session:
             session.with_transaction(execution_virement)
-        print(f"✓ Opération effectuée avec succès. Virement de {montant:,.0f} FCFA exécuté (Réf: {ref_virement}).")
+        print(f"[OK] Opération effectuée avec succès. Virement de {montant:,.0f} FCFA exécuté (Réf: {ref_virement}).")
         return True
     except ValueError as ve:
-        print(f"❌ Virement impossible : {ve}")
+        print(f"[Erreur] Virement impossible : {ve}")
         return False
     except PyMongoError as pme:
-        # En cas d'environnement mono-nœud sans réplica set (fallback gracieux documenté)
         if "Transaction numbers are only allowed on a replica set" in str(pme) or "standalone" in str(pme):
-            print("⚠️ Remarque: Les transactions multi-documents nécessitent un réplica set (comme sur MongoDB Atlas). Mode de secours sans session exécuté.")
+            print("[Attention] Remarque: Les transactions multi-documents nécessitent un réplica set (comme sur MongoDB Atlas). Mode de secours sans session exécuté.")
             return _effectuer_virement_sans_session(compte_source, compte_destination, montant, canal, ref_virement, date_str)
-        print("❌ Virement impossible : erreur de transaction MongoDB.")
+        print("[Erreur] Virement impossible : erreur de transaction MongoDB.")
         return False
 
 def _effectuer_virement_sans_session(compte_source, compte_destination, montant, canal, ref_virement, date_str):
@@ -239,18 +237,18 @@ def _effectuer_virement_sans_session(compte_source, compte_destination, montant,
     src = db.comptes.find_one({"numero": compte_source})
     dst = db.comptes.find_one({"numero": compte_destination})
     if not src or not dst:
-        print("❌ Compte introuvable.")
+        print("[Erreur] Compte introuvable.")
         return False
     if src.get("statut") != "actif" or dst.get("statut") != "actif":
-        print("❌ Compte inactif.")
+        print("[Erreur] Compte inactif.")
         return False
     if src.get("solde", 0) < montant:
-        print("❌ Solde insuffisant.")
+        print("[Erreur] Solde insuffisant.")
         return False
 
     res = db.comptes.update_one({"numero": compte_source, "solde": {"$gte": montant}}, {"$inc": {"solde": -montant}})
     if res.modified_count == 0:
-        print("❌ Solde insuffisant.")
+        print("[Erreur] Solde insuffisant.")
         return False
 
     db.comptes.update_one({"numero": compte_destination}, {"$inc": {"solde": montant}})
@@ -278,7 +276,7 @@ def _effectuer_virement_sans_session(compte_source, compte_destination, montant,
             "sens": "credit"
         }
     ])
-    print(f"✓ Opération effectuée avec succès. Virement de {montant:,.0f} FCFA exécuté (Réf: {ref_virement}).")
+    print(f"[OK] Opération effectuée avec succès. Virement de {montant:,.0f} FCFA exécuté (Réf: {ref_virement}).")
     return True
 
 def releve_compte(numero_compte, date_debut=None, date_fin=None):
@@ -287,7 +285,7 @@ def releve_compte(numero_compte, date_debut=None, date_fin=None):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return []
 
     filtre = {"compte": numero_compte}
@@ -304,5 +302,5 @@ def releve_compte(numero_compte, date_debut=None, date_fin=None):
         results = list(db.transactions.find(filtre, {"_id": 0}).sort("date", 1))
         return results
     except PyMongoError:
-        print("❌ Erreur lors de la récupération du relevé de compte.")
+        print("[Erreur] Erreur lors de la récupération du relevé de compte.")
         return []

@@ -1,6 +1,6 @@
 from datetime import datetime
 from pymongo.errors import PyMongoError
-from database import get_db
+from config import get_db
 
 PERIODICITES_AUTORISEES = ["mensuelle", "hebdomadaire", "bimensuelle"]
 
@@ -10,11 +10,11 @@ def creer_tontine(nom, montant_cotisation, periodicite, membres_liste, ordre_ben
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return None
 
     if periodicite not in PERIODICITES_AUTORISEES:
-        print(f"❌ Périodicité invalide. Valeurs autorisées : {PERIODICITES_AUTORISEES}")
+        print(f"[Erreur] Périodicité invalide. Valeurs autorisées : {PERIODICITES_AUTORISEES}")
         return None
 
     # Suppression des doublons de membres
@@ -25,7 +25,7 @@ def creer_tontine(nom, montant_cotisation, periodicite, membres_liste, ordre_ben
     numeros_valides = [m["numero"] for m in membres_existants]
 
     if len(numeros_valides) == 0:
-        print("❌ Aucun membre valide fourni pour la tontine.")
+        print("[Erreur] Aucun membre valide fourni pour la tontine.")
         return None
 
     if ordre_benefice is None:
@@ -45,10 +45,10 @@ def creer_tontine(nom, montant_cotisation, periodicite, membres_liste, ordre_ben
 
     try:
         res = db.tontines.insert_one(doc)
-        print(f"✓ Opération effectuée avec succès. Tontine '{nom}' créée.")
+        print(f"[OK] Opération effectuée avec succès. Tontine '{nom}' créée.")
         return doc
     except PyMongoError:
-        print("❌ Erreur lors de la création de la tontine.")
+        print("[Erreur] Erreur lors de la création de la tontine.")
         return None
 
 def ajouter_membre_tontine(nom_tontine, numero_membre):
@@ -57,21 +57,21 @@ def ajouter_membre_tontine(nom_tontine, numero_membre):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return False
 
     tontine = db.tontines.find_one({"nom": nom_tontine})
     if not tontine:
-        print("❌ Tontine introuvable.")
+        print("[Erreur] Tontine introuvable.")
         return False
 
     if numero_membre in tontine.get("membres", []):
-        print(f"❌ Le membre {numero_membre} appartient déjà à la tontine '{nom_tontine}'.")
+        print(f"[Erreur] Le membre {numero_membre} appartient déjà à la tontine '{nom_tontine}'.")
         return False
 
     membre_doc = db.membres.find_one({"numero": numero_membre})
     if not membre_doc:
-        print(f"❌ Membre '{numero_membre}' introuvable.")
+        print(f"[Erreur] Membre '{numero_membre}' introuvable.")
         return False
 
     try:
@@ -84,10 +84,10 @@ def ajouter_membre_tontine(nom_tontine, numero_membre):
                 }
             }
         )
-        print(f"✓ Membre {numero_membre} ajouté à la tontine '{nom_tontine}'.")
+        print(f"[OK] Membre {numero_membre} ajouté à la tontine '{nom_tontine}'.")
         return True
     except PyMongoError:
-        print("❌ Erreur lors de l'ajout du membre à la tontine.")
+        print("[Erreur] Erreur lors de l'ajout du membre à la tontine.")
         return False
 
 def lister_tontines_membre(numero_membre):
@@ -96,13 +96,13 @@ def lister_tontines_membre(numero_membre):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return []
 
     try:
         return list(db.tontines.find({"membres": numero_membre}, {"_id": 0}))
     except PyMongoError:
-        print("❌ Erreur lors de la récupération des tontines du membre.")
+        print("[Erreur] Erreur lors de la récupération des tontines du membre.")
         return []
 
 def determiner_prochain_beneficiaire(nom_tontine):
@@ -111,12 +111,12 @@ def determiner_prochain_beneficiaire(nom_tontine):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return None
 
     tontine = db.tontines.find_one({"nom": nom_tontine})
     if not tontine:
-        print("❌ Tontine introuvable.")
+        print("[Erreur] Tontine introuvable.")
         return None
 
     ordre = tontine.get("ordre_benefice", [])
@@ -128,27 +128,26 @@ def determiner_prochain_beneficiaire(nom_tontine):
         if membre not in beneficiaires_passes:
             return membre
 
-    # Si tout le monde a déjà bénéficié d'un tour, le cycle recommence
     if ordre:
         return ordre[0]
     return None
 
 def enregistrer_cotisation(nom_tontine, numero_membre, montant, date_tour=None):
     """
-    Enregistre la cotisation d'un membre pour le tour courant (ou crée un tour s'il n'existe pas).
+    Enregistre la cotisation d'un membre pour le tour courant.
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return False
 
     tontine = db.tontines.find_one({"nom": nom_tontine})
     if not tontine:
-        print("❌ Tontine introuvable.")
+        print("[Erreur] Tontine introuvable.")
         return False
 
     if numero_membre not in tontine.get("membres", []):
-        print(f"❌ Le membre {numero_membre} ne fait pas partie de cette tontine.")
+        print(f"[Erreur] Le membre {numero_membre} ne fait pas partie de cette tontine.")
         return False
 
     if date_tour is None:
@@ -156,7 +155,6 @@ def enregistrer_cotisation(nom_tontine, numero_membre, montant, date_tour=None):
 
     tours = tontine.get("tours", [])
 
-    # Trouver ou créer le tour actif
     if not tours or (tours and len(tours[-1].get("cotisations_recues", [])) >= len(tontine.get("membres", []))):
         prochain_benef = determiner_prochain_beneficiaire(nom_tontine)
         nouveau_tour = {
@@ -168,10 +166,9 @@ def enregistrer_cotisation(nom_tontine, numero_membre, montant, date_tour=None):
 
     tour_actuel = tours[-1]
 
-    # Vérifier si le membre a déjà cotisé pour ce tour
-    deja_cotise = any(c.get("membre") == numero_membre for c.get in tour_actuel.get("cotisations_recues", []))
+    deja_cotise = any(c.get("membre") == numero_membre for c in tour_actuel.get("cotisations_recues", []))
     if deja_cotise:
-        print(f"⚠️ Le membre {numero_membre} a déjà cotisé pour ce tour.")
+        print(f"[Attention] Le membre {numero_membre} a déjà cotisé pour ce tour.")
         return False
 
     tour_actuel.get("cotisations_recues", []).append({
@@ -184,8 +181,8 @@ def enregistrer_cotisation(nom_tontine, numero_membre, montant, date_tour=None):
             {"nom": nom_tontine},
             {"$set": {"tours": tours}}
         )
-        print(f"✓ Cotisation de {montant:,.0f} FCFA enregistrée pour {numero_membre} (Tontine: '{nom_tontine}').")
+        print(f"[OK] Cotisation de {montant:,.0f} FCFA enregistrée pour {numero_membre} (Tontine: '{nom_tontine}').")
         return True
     except PyMongoError:
-        print("❌ Erreur lors de l'enregistrement de la cotisation.")
+        print("[Erreur] Erreur lors de l'enregistrement de la cotisation.")
         return False

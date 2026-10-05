@@ -1,7 +1,7 @@
 from datetime import datetime
 from pymongo.errors import PyMongoError
-from database import get_db
-from utils import format_fcfa
+from config import get_db
+from crud import format_fcfa
 
 def agregation_1_encours_par_ville_profession():
     """
@@ -10,7 +10,7 @@ def agregation_1_encours_par_ville_profession():
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return []
 
     pipeline = [
@@ -53,7 +53,7 @@ def agregation_1_encours_par_ville_profession():
         results = list(db.prets.aggregate(pipeline))
         return results
     except PyMongoError:
-        print("❌ Erreur lors de l'exécution de l'Agrégation 1.")
+        print("[Erreur] Erreur lors de l'exécution de l'Agrégation 1.")
         return []
 
 def agregation_2_taux_remboursement_echeance():
@@ -64,7 +64,7 @@ def agregation_2_taux_remboursement_echeance():
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return None
 
     pipeline = [
@@ -103,7 +103,7 @@ def agregation_2_taux_remboursement_echeance():
         res = list(db.prets.aggregate(pipeline))
         return res[0] if res else {"total_echeances_dues": 0, "echeances_payees_temps": 0, "taux_remboursement_pct": 0.0}
     except PyMongoError:
-        print("❌ Erreur lors de l'exécution de l'Agrégation 2.")
+        print("[Erreur] Erreur lors de l'exécution de l'Agrégation 2.")
         return None
 
 def agregation_3_depots_retraits_par_mois_canal():
@@ -113,7 +113,7 @@ def agregation_3_depots_retraits_par_mois_canal():
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return []
 
     pipeline = [
@@ -159,7 +159,7 @@ def agregation_3_depots_retraits_par_mois_canal():
     try:
         return list(db.transactions.aggregate(pipeline))
     except PyMongoError:
-        print("❌ Erreur lors de l'exécution de l'Agrégation 3.")
+        print("[Erreur] Erreur lors de l'exécution de l'Agrégation 3.")
         return []
 
 def agregation_4_membres_retard_plus_30_jours():
@@ -170,7 +170,7 @@ def agregation_4_membres_retard_plus_30_jours():
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return []
 
     date_actuelle_str = datetime.now().strftime("%Y-%m-%d")
@@ -235,7 +235,7 @@ def agregation_4_membres_retard_plus_30_jours():
     try:
         return list(db.prets.aggregate(pipeline))
     except PyMongoError:
-        print("❌ Erreur lors de l'exécution de l'Agrégation 4.")
+        print("[Erreur] Erreur lors de l'exécution de l'Agrégation 4.")
         return []
 
 def agregation_5_taux_cotisation_dernier_tour():
@@ -245,7 +245,7 @@ def agregation_5_taux_cotisation_dernier_tour():
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return []
 
     pipeline = [
@@ -292,5 +292,5 @@ def agregation_5_taux_cotisation_dernier_tour():
     try:
         return list(db.tontines.aggregate(pipeline))
     except PyMongoError:
-        print("❌ Erreur lors de l'exécution de l'Agrégation 5.")
+        print("[Erreur] Erreur lors de l'exécution de l'Agrégation 5.")
         return []

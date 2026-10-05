@@ -1,8 +1,7 @@
 import random
 from datetime import datetime, timedelta
-from database import get_db
-from index import creer_index
-from prets import calculer_echeancier
+from config import get_db
+from crud import creer_index, calculer_echeancier
 
 # Reproductibilité garantie par la graine 42
 random.seed(42)
@@ -48,10 +47,10 @@ def generer_donnees_completes(nb_membres=200, nb_comptes=250, nb_trans=3500, nb_
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return False
 
-    print("🚀 Initialisation du nettoyage des collections existantes...")
+    print("Initialisation du nettoyage des collections existantes...")
     db.membres.delete_many({})
     db.comptes.delete_many({})
     db.transactions.delete_many({})
@@ -59,14 +58,14 @@ def generer_donnees_completes(nb_membres=200, nb_comptes=250, nb_trans=3500, nb_
     db.prets_archives.delete_many({})
     db.tontines.delete_many({})
 
-    print("📌 Création des index obligatoires...")
+    print("Création des index obligatoires...")
     creer_index()
 
     debut_periode = datetime(2025, 1, 1)
     fin_periode = datetime(2026, 10, 1)
 
     # 1. Génération des Membres (200)
-    print(f"👥 Génération de {nb_membres} membres...")
+    print(f" Génération de {nb_membres} membres...")
     list_membres = []
     for i in range(1, nb_membres + 1):
         num_mem = f"MEM{i:03d}"
@@ -90,7 +89,7 @@ def generer_donnees_completes(nb_membres=200, nb_comptes=250, nb_trans=3500, nb_
     db.membres.insert_many(list_membres)
 
     # 2. Génération des Comptes (250)
-    print(f"💳 Génération de {nb_comptes} comptes...")
+    print(f"Génération de {nb_comptes} comptes...")
     list_comptes = []
     soldes_tracker = {}
 
@@ -114,7 +113,7 @@ def generer_donnees_completes(nb_membres=200, nb_comptes=250, nb_trans=3500, nb_
     db.comptes.insert_many(list_comptes)
 
     # 3. Génération des Transactions (3500)
-    print(f" Génération de {nb_trans} transactions avec mise à jour des soldes...")
+    print(f"Génération de {nb_trans} transactions avec mise à jour des soldes...")
     list_transactions = []
     codes_comptes = [c["numero"] for c in list_comptes]
 
@@ -199,7 +198,7 @@ def generer_donnees_completes(nb_membres=200, nb_comptes=250, nb_trans=3500, nb_
         db.comptes.update_one({"numero": num_cpt}, {"$set": {"solde": round(solde_final, 2)}})
 
     # 4. Génération des Prêts (100)
-    print(f" Génération de {nb_prets} prêts avec leurs échéanciers...")
+    print(f"Génération de {nb_prets} prêts avec leurs échéanciers...")
     list_prets = []
     
     for i in range(1, nb_prets + 1):
@@ -250,7 +249,7 @@ def generer_donnees_completes(nb_membres=200, nb_comptes=250, nb_trans=3500, nb_
     db.prets.insert_many(list_prets)
 
     # 5. Génération des Tontines (12)
-    print(f"🤝 Génération de {nb_tontines} tontines...")
+    print(f" Génération de {nb_tontines} tontines...")
     noms_tontine = [
         "Tontine Solidarité Douala", "Tontine Espoir Yaoundé", "Tontine Mifi Bafoussam",
         "Tontine Dynamique Garoua", "Tontine Phénix Bamenda", "Tontine Fraternité Kribi",

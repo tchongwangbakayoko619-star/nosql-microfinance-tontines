@@ -1,26 +1,20 @@
 import sys
-from utils import format_fcfa, clean_doc_for_display
-from database import test_connection, get_db
+from config import test_connection, get_db
 from generer_donnees import generer_donnees_completes
-from membres import (
+from crud import (
     creer_membre, obtenir_membre, lister_membres, 
     rechercher_par_ville, rechercher_par_profession, 
-    modifier_membre, supprimer_membre
-)
-from comptes import (
+    modifier_membre, supprimer_membre,
     creer_compte, obtenir_compte, lister_comptes_membre, 
-    lister_comptes_par_type, cloturer_compte
-)
-from transactions import (
-    effectuer_depot, effectuer_retrait, effectuer_virement, releve_compte
-)
-from prets import (
+    lister_comptes_par_type, cloturer_compte,
+    effectuer_depot, effectuer_retrait, effectuer_virement, releve_compte,
     creer_pret, obtenir_pret, lister_prets_membre, 
-    enregistrer_paiement_echeance, archiver_tous_prets_soldes
-)
-from tontines import (
+    enregistrer_paiement_echeance, archiver_tous_prets_soldes,
     creer_tontine, ajouter_membre_tontine, lister_tontines_membre, 
-    enregistrer_cotisation, determiner_prochain_beneficiaire
+    enregistrer_cotisation, determiner_prochain_beneficiaire,
+    format_fcfa, clean_doc_for_display,
+    creer_index, lister_index, expliciter_requete,
+    exporter_donnees, verifier_projet
 )
 from agregations import (
     agregation_1_encours_par_ville_profession,
@@ -29,10 +23,6 @@ from agregations import (
     agregation_4_membres_retard_plus_30_jours,
     agregation_5_taux_cotisation_dernier_tour
 )
-from index import creer_index, lister_index, expliquer_requete
-from exports import exporter_donnees
-from verification import verifier_projet
-from tests import lancer_tests
 
 def afficher_titre():
     print("""
@@ -89,19 +79,19 @@ def menu_principal():
             elif choix == "12":
                 verifier_projet()
             elif choix == "13":
-                print("\n🧪 Exécution de la suite de tests unitaires...")
+                print("\n Exécution de la suite de tests unitaires...")
                 lancer_tests()
             elif choix == "14":
-                confirm = input("⚠️ Voulez-vous régénérer les données ? (o/n) : ").lower()
+                confirm = input("[Attention] Voulez-vous régénérer les données ? (o/n) : ").lower()
                 if confirm == "o":
                     generer_donnees_completes()
             elif choix == "0":
-                print("\n👋 Au revoir et merci d'avoir utilisé Microfinance et Tontines !")
+                print("\n Au revoir et merci d'avoir utilisé Microfinance et Tontines !")
                 sys.exit(0)
             else:
-                print("❌ Choix invalide. Veuillez réessayer.")
+                print("[Erreur] Choix invalide. Veuillez réessayer.")
         except Exception as e:
-            print(f"❌ Une erreur s'est produite : {e}")
+            print(f"[Erreur] Une erreur s'est produite : {e}")
 
         input("\nAppuyez sur Entrée pour continuer...")
 
@@ -130,24 +120,24 @@ def gerer_membres():
         num = input("Numéro du membre : ").strip()
         m = obtenir_membre(num)
         if m:
-            print("\n📌 Fiche Membre :")
+            print("\n Fiche Membre :")
             for k, v in clean_doc_for_display(m).items():
                 print(f"   • {k} : {v}")
     elif c == "3":
         l = lister_membres()
-        print(f"\n📋 Liste des {len(l)} premiers membres :")
+        print(f"\n Liste des {len(l)} premiers membres :")
         for m in l[:15]:
             print(f"   • [{m['numero']}] {m['nom']} - {m['profession']} ({m['ville']})")
     elif c == "4":
         v = input("Ville : ").strip()
         l = rechercher_par_ville(v)
-        print(f"\n📍 Membres à {v} ({len(l)}) :")
+        print(f"\n Membres à {v} ({len(l)}) :")
         for m in l:
             print(f"   • [{m['numero']}] {m['nom']} - {m['telephone']}")
     elif c == "5":
         p = input("Profession : ").strip()
         l = rechercher_par_profession(p)
-        print(f"\n💼 Membres exerçant la profession {p} ({len(l)}) :")
+        print(f"\n Membres exerçant la profession {p} ({len(l)}) :")
         for m in l:
             print(f"   • [{m['numero']}] {m['nom']} - {m['ville']}")
     elif c == "6":
@@ -179,7 +169,7 @@ def gerer_comptes():
         num = input("Numéro du compte : ").strip()
         c_doc = obtenir_compte(num)
         if c_doc:
-            print("\n💳 Détails du compte :")
+            print("\n Détails du compte :")
             for k, v in clean_doc_for_display(c_doc).items():
                 if k == "solde":
                     v = format_fcfa(v)
@@ -187,13 +177,13 @@ def gerer_comptes():
     elif c == "3":
         mem = input("Numéro du membre : ").strip()
         l = lister_comptes_membre(mem)
-        print(f"\n💳 Comptes du membre {mem} ({len(l)}) :")
+        print(f"\n Comptes du membre {mem} ({len(l)}) :")
         for cpt in l:
             print(f"   • [{cpt['numero']}] Type: {cpt['type']} | Solde: {format_fcfa(cpt['solde'])} | Statut: {cpt['statut']}")
     elif c == "4":
         typ = input("Type (epargne/courant) : ").strip()
         l = lister_comptes_par_type(typ)
-        print(f"\n💳 Comptes de type '{typ}' ({len(l)}) :")
+        print(f"\n Comptes de type '{typ}' ({len(l)}) :")
         for cpt in l[:10]:
             print(f"   • [{cpt['numero']}] Membre: {cpt['membre']} | Solde: {format_fcfa(cpt['solde'])}")
     elif c == "5":
@@ -239,7 +229,7 @@ def gerer_prets():
     elif c == "2":
         mem = input("Numéro du membre : ").strip()
         prets = lister_prets_membre(mem)
-        print(f"\n🏦 Prêts du membre {mem} ({len(prets)}) :")
+        print(f"\n Prêts du membre {mem} ({len(prets)}) :")
         for p in prets:
             print(f"   • Prêt ID: {p['_id']} | Montant: {format_fcfa(p['montant'])} | Statut: {p['statut']} | Échéances: {len(p['echeancier'])}")
     elif c == "3":
@@ -272,7 +262,7 @@ def gerer_tontines():
     elif c == "3":
         mem = input("Numéro du membre : ").strip()
         l = lister_tontines_membre(mem)
-        print(f"\n🤝 Tontines de {mem} ({len(l)}) :")
+        print(f"\n Tontines de {mem} ({len(l)}) :")
         for t in l:
             prochain = determiner_prochain_beneficiaire(t["nom"])
             print(f"   • Tontine '{t['nom']}' | Cotisation: {format_fcfa(t['montant_cotisation'])} | Prochain bénéficiaire: {prochain}")
@@ -285,7 +275,7 @@ def gerer_tontines():
         nom = input("Nom de la tontine : ").strip()
         b = determiner_prochain_beneficiaire(nom)
         if b:
-            print(f"🎯 Le prochain bénéficiaire de la tontine '{nom}' est : {b}")
+            print(f" Le prochain bénéficiaire de la tontine '{nom}' est : {b}")
 
 def menu_recherches():
     print("\n--- RECHERCHES FIND OBLIGATOIRES ---")
@@ -298,18 +288,18 @@ def menu_recherches():
     if c == "1":
         mem = input("Numéro du membre (ex: MEM001) : ").strip()
         l = lister_comptes_membre(mem)
-        print(f"\n💳 Comptes et soldes de {mem} :")
+        print(f"\n Comptes et soldes de {mem} :")
         solde_total = 0
         for cpt in l:
             print(f"   • Compte {cpt['numero']} ({cpt['type']}) : {format_fcfa(cpt['solde'])} [{cpt['statut']}]")
             solde_total += cpt['solde']
-        print(f"   👉 Solde global cumulé : {format_fcfa(solde_total)}")
+        print(f"    Solde global cumulé : {format_fcfa(solde_total)}")
     elif c == "2":
         cpt = input("Numéro de compte (ex: CPT0001) : ").strip()
         d_debut = input("Date début (YYYY-MM-DD) [optionnel] : ").strip() or None
         d_fin = input("Date fin (YYYY-MM-DD) [optionnel] : ").strip() or None
         res = releve_compte(cpt, d_debut, d_fin)
-        print(f"\n📜 Relevé de compte {cpt} ({len(res)} transactions) :")
+        print(f"\n Relevé de compte {cpt} ({len(res)} transactions) :")
         for t in res[:20]:
             ref = t.get("reference") or t.get("reference_virement") or "N/A"
             print(f"   • [{t['date']}] {t['type'].upper()} | {format_fcfa(t['montant'])} | Canal: {t['canal']} | Réf: {ref}")
@@ -323,13 +313,13 @@ def menu_recherches():
             {"$project": {"_id": 0, "membre": 1, "date_echeance": "$echeancier.date", "montant_du": "$echeancier.montant_du", "num_echeance": "$echeancier.num_echeance"}}
         ]
         res = list(db.prets.aggregate(pipeline))
-        print(f"\n⚠️ Échéances impayées à ce jour ({len(res)}) :")
+        print(f"\n[Attention] Échéances impayées à ce jour ({len(res)}) :")
         for e in res[:15]:
             print(f"   • Membre: {e['membre']} | Échéance n°{e['num_echeance']} | Due le: {e['date_echeance']} | Montant: {format_fcfa(e['montant_du'])}")
     elif c == "4":
         mem = input("Numéro du membre : ").strip()
         l = lister_tontines_membre(mem)
-        print(f"\n🤝 Tontines de {mem} :")
+        print(f"\n Tontines de {mem} :")
         for t in l:
             b = determiner_prochain_beneficiaire(t["nom"])
             print(f"   • [{t['nom']}] Cotisation: {format_fcfa(t['montant_cotisation'])} | Prochain bénéficiaire: {b}")
@@ -345,28 +335,28 @@ def menu_agregations():
 
     if c == "1":
         res = agregation_1_encours_par_ville_profession()
-        print("\n📊 Encours total des prêts par ville et profession :")
+        print("\n Encours total des prêts par ville et profession :")
         for r in res[:15]:
             print(f"   • {r['ville']} | {r['profession']} : {r['nombre_prets']} prêt(s) | Total encours: {format_fcfa(r['encours_total'])}")
     elif c == "2":
         res = agregation_2_taux_remboursement_echeance()
-        print("\n📊 Taux de remboursement à l'échéance :")
+        print("\n Taux de remboursement à l'échéance :")
         print(f"   • Total échéances dues : {res.get('total_echeances_dues')}")
         print(f"   • Échéances payées à temps : {res.get('echeances_payees_temps')}")
-        print(f"   👉 Taux de remboursement : {res.get('taux_remboursement_pct', 0):.2f} %")
+        print(f"    Taux de remboursement : {res.get('taux_remboursement_pct', 0):.2f} %")
     elif c == "3":
         res = agregation_3_depots_retraits_par_mois_canal()
-        print("\n📊 Dépôts et retraits par mois et canal :")
+        print("\n Dépôts et retraits par mois et canal :")
         for r in res[:15]:
             print(f"   • Mois: {r['mois']} | Canal: {r['canal']} | Dépôts: {format_fcfa(r['total_depots'])} | Retraits: {format_fcfa(r['total_retraits'])}")
     elif c == "4":
         res = agregation_4_membres_retard_plus_30_jours()
-        print(f"\n📊 Membres en retard > 30 jours ({len(res)}) :")
+        print(f"\n Membres en retard > 30 jours ({len(res)}) :")
         for r in res[:15]:
             print(f"   • [{r['numero_membre']}] {r['nom_membre']} ({r['ville']} - {r['profession']}) | Retard: {int(r['jours_retard'])} jours | Dû: {format_fcfa(r['montant_du'])}")
     elif c == "5":
         res = agregation_5_taux_cotisation_dernier_tour()
-        print("\n📊 Taux de cotisation du dernier tour des tontines :")
+        print("\n Taux de cotisation du dernier tour des tontines :")
         for r in res:
             print(f"   • [{r['tontine']}] Tour du {r['date_dernier_tour']} | Bénéficiaire: {r['beneficiaire']} | Reçu: {format_fcfa(r['cotisations_recues'])} / Attendus: {format_fcfa(r['cotisations_attendues'])} ({r['taux_cotisation_pct']:.1f}%)")
 
@@ -382,7 +372,7 @@ def menu_index_performances():
     elif c == "2":
         idxs = lister_index()
         for coll, list_i in idxs.items():
-            print(f"\n📌 Collection '{coll}' ({len(list_i)} index) :")
+            print(f"\n Collection '{coll}' ({len(list_i)} index) :")
             for idx in list_i:
                 print(f"   • Nom: {idx.get('name')} | Clés: {idx.get('key')}")
     elif c == "3":

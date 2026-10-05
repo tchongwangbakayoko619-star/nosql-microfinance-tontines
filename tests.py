@@ -1,11 +1,14 @@
 import unittest
 from datetime import datetime
-from database import get_db, test_connection
-from membres import creer_membre, obtenir_membre, modifier_membre, supprimer_membre
-from comptes import creer_compte, obtenir_compte, cloturer_compte
-from transactions import effectuer_depot, effectuer_retrait, effectuer_virement, releve_compte
-from prets import creer_pret, obtenir_pret, enregistrer_paiement_echeance
-from tontines import creer_tontine, ajouter_membre_tontine, enregistrer_cotisation
+from config import get_db, test_connection
+from crud import (
+    creer_membre, obtenir_membre, modifier_membre, supprimer_membre,
+    creer_compte, obtenir_compte, cloturer_compte,
+    effectuer_depot, effectuer_retrait, effectuer_virement, releve_compte,
+    creer_pret, obtenir_pret, enregistrer_paiement_echeance,
+    creer_tontine, ajouter_membre_tontine, enregistrer_cotisation,
+    creer_index, lister_index
+)
 from agregations import (
     agregation_1_encours_par_ville_profession,
     agregation_2_taux_remboursement_echeance,
@@ -13,7 +16,6 @@ from agregations import (
     agregation_4_membres_retard_plus_30_jours,
     agregation_5_taux_cotisation_dernier_tour
 )
-from index import creer_index, lister_index
 
 class TestMicrofinanceProject(unittest.TestCase):
 
@@ -140,6 +142,26 @@ class TestMicrofinanceProject(unittest.TestCase):
         self.assertTrue(res)
         indexes = lister_index()
         self.assertIn("membres", indexes)
+
+    def test_15_erreur_identifiant_inexistant(self):
+        """Test de la gestion d'un identifiant inexistant."""
+        mem = obtenir_membre("MEM_INEXISTANT_99999")
+        self.assertIsNone(mem)
+        cpt = obtenir_compte("CPT_INEXISTANT_99999")
+        self.assertIsNone(cpt)
+
+    def test_16_erreur_doublon(self):
+        """Test du refus de création en cas de doublon sur la clé unique."""
+        # Tenter d'insérer un membre ayant un numéro déjà attribué
+        doublon = creer_membre(self.test_mem1, "Membre Doublon", "690000000", "Enseignant", "Douala", "ID123")
+        self.assertIsNone(doublon)
+
+    def test_17_erreur_saisie_vide(self):
+        """Test du refus de création en cas de saisie vide."""
+        m_vide = creer_membre("", "Nom Test", "690000000", "Artisan", "Kribi", "ID999")
+        self.assertIsNone(m_vide)
+        c_vide = creer_compte("", self.test_mem1, "epargne")
+        self.assertIsNone(c_vide)
 
     @classmethod
     def tearDownClass(cls):

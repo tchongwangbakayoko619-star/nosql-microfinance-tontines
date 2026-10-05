@@ -1,6 +1,6 @@
 from datetime import datetime
 from pymongo.errors import PyMongoError, DuplicateKeyError
-from database import get_db
+from config import get_db
 
 TYPES_AUTORISES = ["epargne", "courant"]
 STATUTS_AUTORISES = ["actif", "cloture"]
@@ -9,23 +9,29 @@ def creer_compte(numero, membre, type_compte, solde=0, date_ouverture=None, stat
     """
     Crée un nouveau compte bancaire pour un membre existant.
     """
+    if not numero or not str(numero).strip():
+        print("[Erreur] Le numéro de compte ne peut pas être vide.")
+        return None
+    if not membre or not str(membre).strip():
+        print("[Erreur] Le numéro du membre ne peut pas être vide.")
+        return None
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return None
 
     if type_compte not in TYPES_AUTORISES:
-        print(f"❌ Type de compte invalide. Types autorisés : {TYPES_AUTORISES}")
+        print(f"[Erreur] Type de compte invalide. Types autorisés : {TYPES_AUTORISES}")
         return None
 
     if solde < 0:
-        print("❌ Montant invalide (le solde initial ne peut pas être négatif).")
+        print("[Erreur] Montant invalide (le solde initial ne peut pas être négatif).")
         return None
 
     # Vérification de l'existence du membre
     membre_doc = db.membres.find_one({"numero": membre})
     if not membre_doc:
-        print(f"❌ Membre introuvable ('{membre}').")
+        print(f"[Erreur] Membre introuvable ('{membre}').")
         return None
 
     if date_ouverture is None:
@@ -44,13 +50,13 @@ def creer_compte(numero, membre, type_compte, solde=0, date_ouverture=None, stat
 
     try:
         db.comptes.insert_one(doc)
-        print(f"✓ Opération effectuée avec succès. Compte {numero} créé pour le membre {membre}.")
+        print(f"[OK] Opération effectuée avec succès. Compte {numero} créé pour le membre {membre}.")
         return doc
     except DuplicateKeyError:
-        print(f"❌ Numéro de compte '{numero}' existe déjà.")
+        print(f"[Erreur] Numéro de compte '{numero}' existe déjà.")
         return None
     except PyMongoError:
-        print("❌ Erreur lors de la création du compte.")
+        print("[Erreur] Erreur lors de la création du compte.")
         return None
 
 def obtenir_compte(numero):
@@ -59,17 +65,17 @@ def obtenir_compte(numero):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return None
 
     try:
         compte = db.comptes.find_one({"numero": numero})
         if not compte:
-            print("❌ Compte introuvable.")
+            print("[Erreur] Compte introuvable.")
             return None
         return compte
     except PyMongoError:
-        print("❌ Erreur lors de la recherche du compte.")
+        print("[Erreur] Erreur lors de la recherche du compte.")
         return None
 
 def lister_comptes_membre(numero_membre):
@@ -78,13 +84,13 @@ def lister_comptes_membre(numero_membre):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return []
 
     try:
         return list(db.comptes.find({"membre": numero_membre}, {"_id": 0}))
     except PyMongoError:
-        print("❌ Erreur lors de la recherche des comptes du membre.")
+        print("[Erreur] Erreur lors de la recherche des comptes du membre.")
         return []
 
 def lister_comptes_par_type(type_compte):
@@ -93,13 +99,13 @@ def lister_comptes_par_type(type_compte):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return []
 
     try:
         return list(db.comptes.find({"type": type_compte}, {"_id": 0}))
     except PyMongoError:
-        print("❌ Erreur lors de la liste des comptes par type.")
+        print("[Erreur] Erreur lors de la liste des comptes par type.")
         return []
 
 def cloturer_compte(numero_compte):
@@ -108,25 +114,28 @@ def cloturer_compte(numero_compte):
     """
     db = get_db()
     if db is None:
-        print("❌ Connexion à MongoDB Atlas impossible.")
+        print("[Erreur] Connexion à MongoDB Atlas impossible.")
         return False
 
     try:
         compte = db.comptes.find_one({"numero": numero_compte})
         if not compte:
-            print("❌ Compte introuvable.")
+            print("[Erreur] Compte introuvable.")
             return False
 
         if compte.get("solde", 0) != 0:
-            print("❌ Impossible de clôturer le compte : solde non nul.")
+            print("[Erreur] Impossible de clôturer le compte : solde non nul.")
             return False
 
         res = db.comptes.update_one(
             {"numero": numero_compte},
             {"$set": {"statut": "cloture"}}
         )
-        print("✓ Opération effectuée avec succès.")
+        print("[OK] Opération effectuée avec succès.")
         return True
     except PyMongoError:
-        print("❌ Erreur lors de la clôture du compte.")
+        print("[Erreur] Erreur lors de la clôture du compte.")
         return False
+
+# Alias de compatibilité
+cloture_compte = cloturer_compte
