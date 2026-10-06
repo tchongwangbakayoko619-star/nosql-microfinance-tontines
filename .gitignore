@@ -1,6 +1,19 @@
-.env
+# Virtual Environment
 .venv/
+venv/
+ENV/
+env/
+
+# Python Bytecode & Cache
 __pycache__/
-*.pyc
-exports/
-*.log
+*.py[cod]
+*$py.class
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db

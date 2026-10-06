@@ -1,0 +1,2002 @@
+[
+  {
+    "_id": "6ac5033cb6ebf60054604968",
+    "numero": "CPT-00001",
+    "membre_numero": "MBR-0083",
+    "type": "courant",
+    "solde": 22803.119999999995,
+    "date_ouverture": "2022-04-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604969",
+    "numero": "CPT-00002",
+    "membre_numero": "MBR-0148",
+    "type": "épargne",
+    "solde": 499788.35,
+    "date_ouverture": "2024-10-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460496a",
+    "numero": "CPT-00003",
+    "membre_numero": "MBR-0069",
+    "type": "épargne",
+    "solde": 382738.96,
+    "date_ouverture": "2021-12-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460496b",
+    "numero": "CPT-00004",
+    "membre_numero": "MBR-0121",
+    "type": "courant",
+    "solde": 458456.03,
+    "date_ouverture": "2022-01-07T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460496c",
+    "numero": "CPT-00005",
+    "membre_numero": "MBR-0150",
+    "type": "courant",
+    "solde": 319218.44,
+    "date_ouverture": "2023-10-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460496d",
+    "numero": "CPT-00006",
+    "membre_numero": "MBR-0024",
+    "type": "courant",
+    "solde": 177240.72,
+    "date_ouverture": "2022-11-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460496e",
+    "numero": "CPT-00007",
+    "membre_numero": "MBR-0083",
+    "type": "épargne",
+    "solde": 429577.88,
+    "date_ouverture": "2022-11-07T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460496f",
+    "numero": "CPT-00008",
+    "membre_numero": "MBR-0106",
+    "type": "courant",
+    "solde": 147667.81,
+    "date_ouverture": "2023-04-01T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604970",
+    "numero": "CPT-00009",
+    "membre_numero": "MBR-0141",
+    "type": "épargne",
+    "solde": 230138.82,
+    "date_ouverture": "2022-10-07T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604971",
+    "numero": "CPT-00010",
+    "membre_numero": "MBR-0065",
+    "type": "courant",
+    "solde": 62381.19,
+    "date_ouverture": "2023-04-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604972",
+    "numero": "CPT-00011",
+    "membre_numero": "MBR-0132",
+    "type": "épargne",
+    "solde": 330541.89,
+    "date_ouverture": "2024-01-17T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604973",
+    "numero": "CPT-00012",
+    "membre_numero": "MBR-0119",
+    "type": "courant",
+    "solde": 31831.02,
+    "date_ouverture": "2023-11-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604974",
+    "numero": "CPT-00013",
+    "membre_numero": "MBR-0093",
+    "type": "courant",
+    "solde": 314577.33,
+    "date_ouverture": "2021-04-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604975",
+    "numero": "CPT-00014",
+    "membre_numero": "MBR-0053",
+    "type": "courant",
+    "solde": 276863.72,
+    "date_ouverture": "2022-08-13T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604976",
+    "numero": "CPT-00015",
+    "membre_numero": "MBR-0113",
+    "type": "courant",
+    "solde": 65105.91,
+    "date_ouverture": "2024-07-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604977",
+    "numero": "CPT-00016",
+    "membre_numero": "MBR-0156",
+    "type": "épargne",
+    "solde": 356342.5,
+    "date_ouverture": "2022-09-29T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604978",
+    "numero": "CPT-00017",
+    "membre_numero": "MBR-0142",
+    "type": "épargne",
+    "solde": 278364.45,
+    "date_ouverture": "2021-07-10T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604979",
+    "numero": "CPT-00018",
+    "membre_numero": "MBR-0058",
+    "type": "épargne",
+    "solde": 233416.71,
+    "date_ouverture": "2021-08-29T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460497a",
+    "numero": "CPT-00019",
+    "membre_numero": "MBR-0040",
+    "type": "courant",
+    "solde": 466663.26,
+    "date_ouverture": "2022-08-21T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460497b",
+    "numero": "CPT-00020",
+    "membre_numero": "MBR-0131",
+    "type": "courant",
+    "solde": 210667.72,
+    "date_ouverture": "2023-09-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460497c",
+    "numero": "CPT-00021",
+    "membre_numero": "MBR-0121",
+    "type": "épargne",
+    "solde": 231109.3,
+    "date_ouverture": "2021-10-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460497d",
+    "numero": "CPT-00022",
+    "membre_numero": "MBR-0099",
+    "type": "épargne",
+    "solde": 461324.73,
+    "date_ouverture": "2023-11-07T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460497e",
+    "numero": "CPT-00023",
+    "membre_numero": "MBR-0035",
+    "type": "épargne",
+    "solde": 141742.46,
+    "date_ouverture": "2023-04-30T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460497f",
+    "numero": "CPT-00024",
+    "membre_numero": "MBR-0088",
+    "type": "courant",
+    "solde": 411171.99,
+    "date_ouverture": "2022-08-03T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604980",
+    "numero": "CPT-00025",
+    "membre_numero": "MBR-0077",
+    "type": "courant",
+    "solde": 433303.99,
+    "date_ouverture": "2023-07-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604981",
+    "numero": "CPT-00026",
+    "membre_numero": "MBR-0138",
+    "type": "courant",
+    "solde": 175836.35,
+    "date_ouverture": "2024-02-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604982",
+    "numero": "CPT-00027",
+    "membre_numero": "MBR-0140",
+    "type": "courant",
+    "solde": 230395.59,
+    "date_ouverture": "2022-10-22T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604983",
+    "numero": "CPT-00028",
+    "membre_numero": "MBR-0049",
+    "type": "épargne",
+    "solde": 288039.83,
+    "date_ouverture": "2022-04-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604984",
+    "numero": "CPT-00029",
+    "membre_numero": "MBR-0106",
+    "type": "épargne",
+    "solde": 162497.28,
+    "date_ouverture": "2023-08-27T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604985",
+    "numero": "CPT-00030",
+    "membre_numero": "MBR-0098",
+    "type": "courant",
+    "solde": 494264.93,
+    "date_ouverture": "2024-08-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604986",
+    "numero": "CPT-00031",
+    "membre_numero": "MBR-0039",
+    "type": "courant",
+    "solde": 482588.1,
+    "date_ouverture": "2021-09-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604987",
+    "numero": "CPT-00032",
+    "membre_numero": "MBR-0129",
+    "type": "courant",
+    "solde": 435501.66,
+    "date_ouverture": "2023-06-21T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604988",
+    "numero": "CPT-00033",
+    "membre_numero": "MBR-0026",
+    "type": "courant",
+    "solde": 12597.06,
+    "date_ouverture": "2021-10-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604989",
+    "numero": "CPT-00034",
+    "membre_numero": "MBR-0105",
+    "type": "épargne",
+    "solde": 42039.98,
+    "date_ouverture": "2022-06-27T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460498a",
+    "numero": "CPT-00035",
+    "membre_numero": "MBR-0087",
+    "type": "courant",
+    "solde": 326669.14,
+    "date_ouverture": "2022-11-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460498b",
+    "numero": "CPT-00036",
+    "membre_numero": "MBR-0137",
+    "type": "courant",
+    "solde": 477299.1,
+    "date_ouverture": "2024-07-07T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460498c",
+    "numero": "CPT-00037",
+    "membre_numero": "MBR-0125",
+    "type": "épargne",
+    "solde": 310642.43,
+    "date_ouverture": "2022-04-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460498d",
+    "numero": "CPT-00038",
+    "membre_numero": "MBR-0074",
+    "type": "épargne",
+    "solde": 374649.35,
+    "date_ouverture": "2023-06-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460498e",
+    "numero": "CPT-00039",
+    "membre_numero": "MBR-0026",
+    "type": "épargne",
+    "solde": 224620.88,
+    "date_ouverture": "2024-11-22T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460498f",
+    "numero": "CPT-00040",
+    "membre_numero": "MBR-0077",
+    "type": "épargne",
+    "solde": 27765.53,
+    "date_ouverture": "2021-04-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604990",
+    "numero": "CPT-00041",
+    "membre_numero": "MBR-0076",
+    "type": "courant",
+    "solde": 190546.34,
+    "date_ouverture": "2021-10-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604991",
+    "numero": "CPT-00042",
+    "membre_numero": "MBR-0063",
+    "type": "courant",
+    "solde": 285134.39,
+    "date_ouverture": "2022-01-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604992",
+    "numero": "CPT-00043",
+    "membre_numero": "MBR-0044",
+    "type": "épargne",
+    "solde": 44089.33,
+    "date_ouverture": "2023-02-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604993",
+    "numero": "CPT-00044",
+    "membre_numero": "MBR-0159",
+    "type": "épargne",
+    "solde": 251345.29,
+    "date_ouverture": "2024-04-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604994",
+    "numero": "CPT-00045",
+    "membre_numero": "MBR-0037",
+    "type": "épargne",
+    "solde": 233269.21,
+    "date_ouverture": "2022-06-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604995",
+    "numero": "CPT-00046",
+    "membre_numero": "MBR-0118",
+    "type": "courant",
+    "solde": 335086.16,
+    "date_ouverture": "2023-08-11T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604996",
+    "numero": "CPT-00047",
+    "membre_numero": "MBR-0074",
+    "type": "épargne",
+    "solde": 41561.64,
+    "date_ouverture": "2022-12-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604997",
+    "numero": "CPT-00048",
+    "membre_numero": "MBR-0151",
+    "type": "courant",
+    "solde": 321274.66,
+    "date_ouverture": "2023-05-19T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604998",
+    "numero": "CPT-00049",
+    "membre_numero": "MBR-0065",
+    "type": "courant",
+    "solde": 423425.44,
+    "date_ouverture": "2022-02-12T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604999",
+    "numero": "CPT-00050",
+    "membre_numero": "MBR-0099",
+    "type": "courant",
+    "solde": 57793.37,
+    "date_ouverture": "2023-02-21T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460499a",
+    "numero": "CPT-00051",
+    "membre_numero": "MBR-0147",
+    "type": "courant",
+    "solde": 289531.91,
+    "date_ouverture": "2024-12-03T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460499b",
+    "numero": "CPT-00052",
+    "membre_numero": "MBR-0076",
+    "type": "épargne",
+    "solde": 489082.52,
+    "date_ouverture": "2024-09-10T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460499c",
+    "numero": "CPT-00053",
+    "membre_numero": "MBR-0102",
+    "type": "courant",
+    "solde": 9008.49,
+    "date_ouverture": "2024-11-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460499d",
+    "numero": "CPT-00054",
+    "membre_numero": "MBR-0013",
+    "type": "courant",
+    "solde": 417255.26,
+    "date_ouverture": "2022-08-10T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460499e",
+    "numero": "CPT-00055",
+    "membre_numero": "MBR-0059",
+    "type": "courant",
+    "solde": 113407.25,
+    "date_ouverture": "2022-01-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf6005460499f",
+    "numero": "CPT-00056",
+    "membre_numero": "MBR-0159",
+    "type": "courant",
+    "solde": 340493.41,
+    "date_ouverture": "2025-01-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a0",
+    "numero": "CPT-00057",
+    "membre_numero": "MBR-0036",
+    "type": "épargne",
+    "solde": 452184.83,
+    "date_ouverture": "2024-08-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a1",
+    "numero": "CPT-00058",
+    "membre_numero": "MBR-0011",
+    "type": "courant",
+    "solde": 395362.19,
+    "date_ouverture": "2021-03-10T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a2",
+    "numero": "CPT-00059",
+    "membre_numero": "MBR-0149",
+    "type": "courant",
+    "solde": 367518.09,
+    "date_ouverture": "2021-07-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a3",
+    "numero": "CPT-00060",
+    "membre_numero": "MBR-0076",
+    "type": "courant",
+    "solde": 375003.03,
+    "date_ouverture": "2021-12-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a4",
+    "numero": "CPT-00061",
+    "membre_numero": "MBR-0052",
+    "type": "épargne",
+    "solde": 394323.84,
+    "date_ouverture": "2023-01-20T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a5",
+    "numero": "CPT-00062",
+    "membre_numero": "MBR-0136",
+    "type": "courant",
+    "solde": 416083.95,
+    "date_ouverture": "2022-06-11T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a6",
+    "numero": "CPT-00063",
+    "membre_numero": "MBR-0124",
+    "type": "courant",
+    "solde": 374546.88,
+    "date_ouverture": "2022-11-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a7",
+    "numero": "CPT-00064",
+    "membre_numero": "MBR-0030",
+    "type": "courant",
+    "solde": 481632.18,
+    "date_ouverture": "2021-10-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a8",
+    "numero": "CPT-00065",
+    "membre_numero": "MBR-0058",
+    "type": "courant",
+    "solde": 483798.52,
+    "date_ouverture": "2024-02-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049a9",
+    "numero": "CPT-00066",
+    "membre_numero": "MBR-0094",
+    "type": "épargne",
+    "solde": 396387.57,
+    "date_ouverture": "2021-01-29T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049aa",
+    "numero": "CPT-00067",
+    "membre_numero": "MBR-0068",
+    "type": "épargne",
+    "solde": 230119.08,
+    "date_ouverture": "2024-10-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ab",
+    "numero": "CPT-00068",
+    "membre_numero": "MBR-0068",
+    "type": "courant",
+    "solde": 412096.56,
+    "date_ouverture": "2023-01-31T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ac",
+    "numero": "CPT-00069",
+    "membre_numero": "MBR-0028",
+    "type": "épargne",
+    "solde": 238381.05,
+    "date_ouverture": "2024-06-22T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ad",
+    "numero": "CPT-00070",
+    "membre_numero": "MBR-0144",
+    "type": "courant",
+    "solde": 458051.67,
+    "date_ouverture": "2022-03-30T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ae",
+    "numero": "CPT-00071",
+    "membre_numero": "MBR-0017",
+    "type": "courant",
+    "solde": 455146.88,
+    "date_ouverture": "2022-09-11T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049af",
+    "numero": "CPT-00072",
+    "membre_numero": "MBR-0105",
+    "type": "épargne",
+    "solde": 74189.62,
+    "date_ouverture": "2021-03-18T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b0",
+    "numero": "CPT-00073",
+    "membre_numero": "MBR-0078",
+    "type": "courant",
+    "solde": 62479.64,
+    "date_ouverture": "2022-04-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b1",
+    "numero": "CPT-00074",
+    "membre_numero": "MBR-0138",
+    "type": "épargne",
+    "solde": 197379.69,
+    "date_ouverture": "2023-01-30T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b2",
+    "numero": "CPT-00075",
+    "membre_numero": "MBR-0139",
+    "type": "courant",
+    "solde": 295733.47,
+    "date_ouverture": "2025-01-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b3",
+    "numero": "CPT-00076",
+    "membre_numero": "MBR-0040",
+    "type": "courant",
+    "solde": 329186.34,
+    "date_ouverture": "2023-09-30T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b4",
+    "numero": "CPT-00077",
+    "membre_numero": "MBR-0158",
+    "type": "courant",
+    "solde": 469831.27,
+    "date_ouverture": "2022-07-27T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b5",
+    "numero": "CPT-00078",
+    "membre_numero": "MBR-0009",
+    "type": "courant",
+    "solde": 112548.49,
+    "date_ouverture": "2023-06-30T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b6",
+    "numero": "CPT-00079",
+    "membre_numero": "MBR-0061",
+    "type": "courant",
+    "solde": 54180.54,
+    "date_ouverture": "2024-11-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b7",
+    "numero": "CPT-00080",
+    "membre_numero": "MBR-0095",
+    "type": "courant",
+    "solde": 34972.29,
+    "date_ouverture": "2022-07-20T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b8",
+    "numero": "CPT-00081",
+    "membre_numero": "MBR-0049",
+    "type": "épargne",
+    "solde": 474760.34,
+    "date_ouverture": "2023-07-21T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049b9",
+    "numero": "CPT-00082",
+    "membre_numero": "MBR-0024",
+    "type": "épargne",
+    "solde": 322643.71,
+    "date_ouverture": "2024-05-07T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ba",
+    "numero": "CPT-00083",
+    "membre_numero": "MBR-0006",
+    "type": "épargne",
+    "solde": 394463.32,
+    "date_ouverture": "2022-05-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049bb",
+    "numero": "CPT-00084",
+    "membre_numero": "MBR-0033",
+    "type": "épargne",
+    "solde": 38962.03,
+    "date_ouverture": "2024-02-10T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049bc",
+    "numero": "CPT-00085",
+    "membre_numero": "MBR-0054",
+    "type": "épargne",
+    "solde": 407461.23,
+    "date_ouverture": "2022-04-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049bd",
+    "numero": "CPT-00086",
+    "membre_numero": "MBR-0085",
+    "type": "épargne",
+    "solde": 395378.66,
+    "date_ouverture": "2024-05-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049be",
+    "numero": "CPT-00087",
+    "membre_numero": "MBR-0001",
+    "type": "courant",
+    "solde": 429911.03,
+    "date_ouverture": "2021-10-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049bf",
+    "numero": "CPT-00088",
+    "membre_numero": "MBR-0034",
+    "type": "courant",
+    "solde": 400264.34,
+    "date_ouverture": "2021-08-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c0",
+    "numero": "CPT-00089",
+    "membre_numero": "MBR-0007",
+    "type": "épargne",
+    "solde": 12355.86,
+    "date_ouverture": "2022-05-03T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c1",
+    "numero": "CPT-00090",
+    "membre_numero": "MBR-0151",
+    "type": "courant",
+    "solde": 12811.64,
+    "date_ouverture": "2022-06-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c2",
+    "numero": "CPT-00091",
+    "membre_numero": "MBR-0014",
+    "type": "épargne",
+    "solde": 372150.44,
+    "date_ouverture": "2023-12-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c3",
+    "numero": "CPT-00092",
+    "membre_numero": "MBR-0030",
+    "type": "épargne",
+    "solde": 240741.75,
+    "date_ouverture": "2023-01-12T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c4",
+    "numero": "CPT-00093",
+    "membre_numero": "MBR-0132",
+    "type": "épargne",
+    "solde": 228742.68,
+    "date_ouverture": "2022-03-30T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c5",
+    "numero": "CPT-00094",
+    "membre_numero": "MBR-0158",
+    "type": "épargne",
+    "solde": 364985.28,
+    "date_ouverture": "2024-09-11T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c6",
+    "numero": "CPT-00095",
+    "membre_numero": "MBR-0134",
+    "type": "courant",
+    "solde": 231731.05,
+    "date_ouverture": "2021-03-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c7",
+    "numero": "CPT-00096",
+    "membre_numero": "MBR-0016",
+    "type": "courant",
+    "solde": 424412.78,
+    "date_ouverture": "2023-05-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c8",
+    "numero": "CPT-00097",
+    "membre_numero": "MBR-0028",
+    "type": "courant",
+    "solde": 357638.65,
+    "date_ouverture": "2023-06-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049c9",
+    "numero": "CPT-00098",
+    "membre_numero": "MBR-0019",
+    "type": "épargne",
+    "solde": 164445.35,
+    "date_ouverture": "2021-10-31T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ca",
+    "numero": "CPT-00099",
+    "membre_numero": "MBR-0017",
+    "type": "épargne",
+    "solde": 141132.92,
+    "date_ouverture": "2024-07-20T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049cb",
+    "numero": "CPT-00100",
+    "membre_numero": "MBR-0150",
+    "type": "courant",
+    "solde": 193547.68,
+    "date_ouverture": "2024-05-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049cc",
+    "numero": "CPT-00101",
+    "membre_numero": "MBR-0136",
+    "type": "courant",
+    "solde": 229589.13,
+    "date_ouverture": "2024-05-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049cd",
+    "numero": "CPT-00102",
+    "membre_numero": "MBR-0111",
+    "type": "épargne",
+    "solde": 397582.57,
+    "date_ouverture": "2021-08-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ce",
+    "numero": "CPT-00103",
+    "membre_numero": "MBR-0142",
+    "type": "épargne",
+    "solde": 217884.62,
+    "date_ouverture": "2022-04-13T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049cf",
+    "numero": "CPT-00104",
+    "membre_numero": "MBR-0106",
+    "type": "courant",
+    "solde": 414572.52,
+    "date_ouverture": "2023-03-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d0",
+    "numero": "CPT-00105",
+    "membre_numero": "MBR-0107",
+    "type": "épargne",
+    "solde": 159711.43,
+    "date_ouverture": "2022-10-03T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d1",
+    "numero": "CPT-00106",
+    "membre_numero": "MBR-0066",
+    "type": "courant",
+    "solde": 477028.3,
+    "date_ouverture": "2024-11-07T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d2",
+    "numero": "CPT-00107",
+    "membre_numero": "MBR-0122",
+    "type": "épargne",
+    "solde": 50156.27,
+    "date_ouverture": "2021-06-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d3",
+    "numero": "CPT-00108",
+    "membre_numero": "MBR-0024",
+    "type": "courant",
+    "solde": 52799.39,
+    "date_ouverture": "2023-02-03T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d4",
+    "numero": "CPT-00109",
+    "membre_numero": "MBR-0034",
+    "type": "épargne",
+    "solde": 295300.22,
+    "date_ouverture": "2024-02-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d5",
+    "numero": "CPT-00110",
+    "membre_numero": "MBR-0144",
+    "type": "courant",
+    "solde": 336656.57,
+    "date_ouverture": "2023-04-22T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d6",
+    "numero": "CPT-00111",
+    "membre_numero": "MBR-0091",
+    "type": "courant",
+    "solde": 434705.61,
+    "date_ouverture": "2025-01-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d7",
+    "numero": "CPT-00112",
+    "membre_numero": "MBR-0014",
+    "type": "courant",
+    "solde": 302203.0,
+    "date_ouverture": "2022-12-22T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d8",
+    "numero": "CPT-00113",
+    "membre_numero": "MBR-0027",
+    "type": "épargne",
+    "solde": 81591.44,
+    "date_ouverture": "2023-09-15T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049d9",
+    "numero": "CPT-00114",
+    "membre_numero": "MBR-0058",
+    "type": "épargne",
+    "solde": 178306.43,
+    "date_ouverture": "2024-02-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049da",
+    "numero": "CPT-00115",
+    "membre_numero": "MBR-0095",
+    "type": "épargne",
+    "solde": 382489.79,
+    "date_ouverture": "2024-03-21T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049db",
+    "numero": "CPT-00116",
+    "membre_numero": "MBR-0058",
+    "type": "courant",
+    "solde": 423351.8,
+    "date_ouverture": "2024-06-27T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049dc",
+    "numero": "CPT-00117",
+    "membre_numero": "MBR-0158",
+    "type": "épargne",
+    "solde": 306452.48,
+    "date_ouverture": "2024-09-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049dd",
+    "numero": "CPT-00118",
+    "membre_numero": "MBR-0069",
+    "type": "épargne",
+    "solde": 94305.96,
+    "date_ouverture": "2024-12-10T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049de",
+    "numero": "CPT-00119",
+    "membre_numero": "MBR-0080",
+    "type": "courant",
+    "solde": 178756.59,
+    "date_ouverture": "2022-01-07T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049df",
+    "numero": "CPT-00120",
+    "membre_numero": "MBR-0037",
+    "type": "courant",
+    "solde": 39444.78,
+    "date_ouverture": "2024-07-20T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e0",
+    "numero": "CPT-00121",
+    "membre_numero": "MBR-0008",
+    "type": "épargne",
+    "solde": 374325.32,
+    "date_ouverture": "2022-03-17T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e1",
+    "numero": "CPT-00122",
+    "membre_numero": "MBR-0097",
+    "type": "courant",
+    "solde": 229554.67,
+    "date_ouverture": "2021-11-19T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e2",
+    "numero": "CPT-00123",
+    "membre_numero": "MBR-0095",
+    "type": "courant",
+    "solde": 362190.0,
+    "date_ouverture": "2024-03-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e3",
+    "numero": "CPT-00124",
+    "membre_numero": "MBR-0153",
+    "type": "épargne",
+    "solde": 442254.38,
+    "date_ouverture": "2021-11-15T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e4",
+    "numero": "CPT-00125",
+    "membre_numero": "MBR-0041",
+    "type": "épargne",
+    "solde": 338614.51,
+    "date_ouverture": "2022-07-12T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e5",
+    "numero": "CPT-00126",
+    "membre_numero": "MBR-0114",
+    "type": "courant",
+    "solde": 245402.54,
+    "date_ouverture": "2023-06-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e6",
+    "numero": "CPT-00127",
+    "membre_numero": "MBR-0107",
+    "type": "courant",
+    "solde": 111706.64,
+    "date_ouverture": "2023-11-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e7",
+    "numero": "CPT-00128",
+    "membre_numero": "MBR-0030",
+    "type": "courant",
+    "solde": 217807.25,
+    "date_ouverture": "2022-08-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e8",
+    "numero": "CPT-00129",
+    "membre_numero": "MBR-0152",
+    "type": "courant",
+    "solde": 265832.38,
+    "date_ouverture": "2022-09-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049e9",
+    "numero": "CPT-00130",
+    "membre_numero": "MBR-0012",
+    "type": "épargne",
+    "solde": 200655.38,
+    "date_ouverture": "2024-05-12T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ea",
+    "numero": "CPT-00131",
+    "membre_numero": "MBR-0015",
+    "type": "épargne",
+    "solde": 106189.45,
+    "date_ouverture": "2022-03-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049eb",
+    "numero": "CPT-00132",
+    "membre_numero": "MBR-0036",
+    "type": "courant",
+    "solde": 148276.33,
+    "date_ouverture": "2021-09-03T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ec",
+    "numero": "CPT-00133",
+    "membre_numero": "MBR-0002",
+    "type": "courant",
+    "solde": 374771.99,
+    "date_ouverture": "2021-12-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ed",
+    "numero": "CPT-00134",
+    "membre_numero": "MBR-0034",
+    "type": "courant",
+    "solde": 268628.26,
+    "date_ouverture": "2022-04-17T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ee",
+    "numero": "CPT-00135",
+    "membre_numero": "MBR-0129",
+    "type": "courant",
+    "solde": 40677.37,
+    "date_ouverture": "2021-03-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ef",
+    "numero": "CPT-00136",
+    "membre_numero": "MBR-0112",
+    "type": "épargne",
+    "solde": 232578.35,
+    "date_ouverture": "2021-06-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f0",
+    "numero": "CPT-00137",
+    "membre_numero": "MBR-0081",
+    "type": "courant",
+    "solde": 288832.84,
+    "date_ouverture": "2024-12-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f1",
+    "numero": "CPT-00138",
+    "membre_numero": "MBR-0107",
+    "type": "courant",
+    "solde": 62010.82,
+    "date_ouverture": "2021-02-12T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f2",
+    "numero": "CPT-00139",
+    "membre_numero": "MBR-0084",
+    "type": "épargne",
+    "solde": 401654.47,
+    "date_ouverture": "2024-06-19T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f3",
+    "numero": "CPT-00140",
+    "membre_numero": "MBR-0118",
+    "type": "courant",
+    "solde": 48624.29,
+    "date_ouverture": "2021-08-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f4",
+    "numero": "CPT-00141",
+    "membre_numero": "MBR-0063",
+    "type": "courant",
+    "solde": 296491.29,
+    "date_ouverture": "2023-12-10T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f5",
+    "numero": "CPT-00142",
+    "membre_numero": "MBR-0021",
+    "type": "courant",
+    "solde": 435909.59,
+    "date_ouverture": "2022-11-27T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f6",
+    "numero": "CPT-00143",
+    "membre_numero": "MBR-0057",
+    "type": "courant",
+    "solde": 390663.34,
+    "date_ouverture": "2021-06-06T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f7",
+    "numero": "CPT-00144",
+    "membre_numero": "MBR-0131",
+    "type": "épargne",
+    "solde": 267649.39,
+    "date_ouverture": "2022-02-02T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f8",
+    "numero": "CPT-00145",
+    "membre_numero": "MBR-0090",
+    "type": "courant",
+    "solde": 365052.66,
+    "date_ouverture": "2024-08-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049f9",
+    "numero": "CPT-00146",
+    "membre_numero": "MBR-0038",
+    "type": "épargne",
+    "solde": 55888.24,
+    "date_ouverture": "2022-06-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049fa",
+    "numero": "CPT-00147",
+    "membre_numero": "MBR-0051",
+    "type": "épargne",
+    "solde": 303187.5,
+    "date_ouverture": "2024-09-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049fb",
+    "numero": "CPT-00148",
+    "membre_numero": "MBR-0020",
+    "type": "épargne",
+    "solde": 475889.61,
+    "date_ouverture": "2024-07-10T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049fc",
+    "numero": "CPT-00149",
+    "membre_numero": "MBR-0127",
+    "type": "courant",
+    "solde": 378450.68,
+    "date_ouverture": "2024-04-01T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049fd",
+    "numero": "CPT-00150",
+    "membre_numero": "MBR-0115",
+    "type": "courant",
+    "solde": 432802.2,
+    "date_ouverture": "2024-07-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049fe",
+    "numero": "CPT-00151",
+    "membre_numero": "MBR-0081",
+    "type": "épargne",
+    "solde": 222682.59,
+    "date_ouverture": "2023-08-19T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf600546049ff",
+    "numero": "CPT-00152",
+    "membre_numero": "MBR-0114",
+    "type": "courant",
+    "solde": 399183.19,
+    "date_ouverture": "2024-04-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a00",
+    "numero": "CPT-00153",
+    "membre_numero": "MBR-0015",
+    "type": "courant",
+    "solde": 256131.76,
+    "date_ouverture": "2022-09-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a01",
+    "numero": "CPT-00154",
+    "membre_numero": "MBR-0119",
+    "type": "courant",
+    "solde": 23615.59,
+    "date_ouverture": "2023-01-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a02",
+    "numero": "CPT-00155",
+    "membre_numero": "MBR-0074",
+    "type": "épargne",
+    "solde": 324109.9,
+    "date_ouverture": "2021-07-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a03",
+    "numero": "CPT-00156",
+    "membre_numero": "MBR-0158",
+    "type": "courant",
+    "solde": 234042.27,
+    "date_ouverture": "2024-02-10T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a04",
+    "numero": "CPT-00157",
+    "membre_numero": "MBR-0011",
+    "type": "courant",
+    "solde": 454979.73,
+    "date_ouverture": "2024-03-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a05",
+    "numero": "CPT-00158",
+    "membre_numero": "MBR-0049",
+    "type": "courant",
+    "solde": 304477.89,
+    "date_ouverture": "2023-10-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a06",
+    "numero": "CPT-00159",
+    "membre_numero": "MBR-0039",
+    "type": "épargne",
+    "solde": 228008.94,
+    "date_ouverture": "2022-12-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a07",
+    "numero": "CPT-00160",
+    "membre_numero": "MBR-0022",
+    "type": "épargne",
+    "solde": 24375.35,
+    "date_ouverture": "2024-12-20T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a08",
+    "numero": "CPT-00161",
+    "membre_numero": "MBR-0113",
+    "type": "courant",
+    "solde": 264413.93,
+    "date_ouverture": "2024-06-02T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a09",
+    "numero": "CPT-00162",
+    "membre_numero": "MBR-0041",
+    "type": "courant",
+    "solde": 189561.73,
+    "date_ouverture": "2022-08-03T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a0a",
+    "numero": "CPT-00163",
+    "membre_numero": "MBR-0100",
+    "type": "courant",
+    "solde": 388360.07,
+    "date_ouverture": "2024-10-22T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a0b",
+    "numero": "CPT-00164",
+    "membre_numero": "MBR-0154",
+    "type": "épargne",
+    "solde": 395667.33,
+    "date_ouverture": "2024-08-18T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a0c",
+    "numero": "CPT-00165",
+    "membre_numero": "MBR-0086",
+    "type": "épargne",
+    "solde": 168196.92,
+    "date_ouverture": "2024-02-17T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a0d",
+    "numero": "CPT-00166",
+    "membre_numero": "MBR-0099",
+    "type": "courant",
+    "solde": 129737.91,
+    "date_ouverture": "2024-09-06T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a0e",
+    "numero": "CPT-00167",
+    "membre_numero": "MBR-0155",
+    "type": "épargne",
+    "solde": 170014.21,
+    "date_ouverture": "2024-04-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a0f",
+    "numero": "CPT-00168",
+    "membre_numero": "MBR-0037",
+    "type": "courant",
+    "solde": 158564.71,
+    "date_ouverture": "2024-09-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a10",
+    "numero": "CPT-00169",
+    "membre_numero": "MBR-0101",
+    "type": "épargne",
+    "solde": 299545.41,
+    "date_ouverture": "2021-06-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a11",
+    "numero": "CPT-00170",
+    "membre_numero": "MBR-0080",
+    "type": "courant",
+    "solde": 323529.17,
+    "date_ouverture": "2022-11-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a12",
+    "numero": "CPT-00171",
+    "membre_numero": "MBR-0033",
+    "type": "épargne",
+    "solde": 324782.29,
+    "date_ouverture": "2023-05-18T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a13",
+    "numero": "CPT-00172",
+    "membre_numero": "MBR-0131",
+    "type": "courant",
+    "solde": 14024.12,
+    "date_ouverture": "2022-09-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a14",
+    "numero": "CPT-00173",
+    "membre_numero": "MBR-0047",
+    "type": "épargne",
+    "solde": 174157.51,
+    "date_ouverture": "2023-09-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a15",
+    "numero": "CPT-00174",
+    "membre_numero": "MBR-0050",
+    "type": "épargne",
+    "solde": 499988.43,
+    "date_ouverture": "2021-11-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a16",
+    "numero": "CPT-00175",
+    "membre_numero": "MBR-0020",
+    "type": "courant",
+    "solde": 422992.05,
+    "date_ouverture": "2021-07-27T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a17",
+    "numero": "CPT-00176",
+    "membre_numero": "MBR-0130",
+    "type": "épargne",
+    "solde": 332654.97,
+    "date_ouverture": "2024-06-19T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a18",
+    "numero": "CPT-00177",
+    "membre_numero": "MBR-0034",
+    "type": "courant",
+    "solde": 81355.12,
+    "date_ouverture": "2022-01-06T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a19",
+    "numero": "CPT-00178",
+    "membre_numero": "MBR-0160",
+    "type": "épargne",
+    "solde": 361985.58,
+    "date_ouverture": "2021-03-31T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a1a",
+    "numero": "CPT-00179",
+    "membre_numero": "MBR-0106",
+    "type": "courant",
+    "solde": 339799.65,
+    "date_ouverture": "2022-05-02T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a1b",
+    "numero": "CPT-00180",
+    "membre_numero": "MBR-0114",
+    "type": "courant",
+    "solde": 377433.63,
+    "date_ouverture": "2023-07-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a1c",
+    "numero": "CPT-00181",
+    "membre_numero": "MBR-0060",
+    "type": "épargne",
+    "solde": 158186.61,
+    "date_ouverture": "2023-08-19T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a1d",
+    "numero": "CPT-00182",
+    "membre_numero": "MBR-0050",
+    "type": "courant",
+    "solde": 340761.88,
+    "date_ouverture": "2024-03-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a1e",
+    "numero": "CPT-00183",
+    "membre_numero": "MBR-0113",
+    "type": "courant",
+    "solde": 385872.08,
+    "date_ouverture": "2023-02-22T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a1f",
+    "numero": "CPT-00184",
+    "membre_numero": "MBR-0129",
+    "type": "courant",
+    "solde": 483302.74,
+    "date_ouverture": "2022-02-13T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a20",
+    "numero": "CPT-00185",
+    "membre_numero": "MBR-0155",
+    "type": "épargne",
+    "solde": 437135.95,
+    "date_ouverture": "2021-04-17T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a21",
+    "numero": "CPT-00186",
+    "membre_numero": "MBR-0124",
+    "type": "courant",
+    "solde": 279497.67,
+    "date_ouverture": "2021-07-30T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a22",
+    "numero": "CPT-00187",
+    "membre_numero": "MBR-0133",
+    "type": "épargne",
+    "solde": 146106.19,
+    "date_ouverture": "2021-11-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a23",
+    "numero": "CPT-00188",
+    "membre_numero": "MBR-0070",
+    "type": "courant",
+    "solde": 453126.57,
+    "date_ouverture": "2021-10-29T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a24",
+    "numero": "CPT-00189",
+    "membre_numero": "MBR-0112",
+    "type": "épargne",
+    "solde": 473474.57,
+    "date_ouverture": "2022-03-31T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a25",
+    "numero": "CPT-00190",
+    "membre_numero": "MBR-0116",
+    "type": "courant",
+    "solde": 465583.6,
+    "date_ouverture": "2023-04-30T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a26",
+    "numero": "CPT-00191",
+    "membre_numero": "MBR-0014",
+    "type": "courant",
+    "solde": 253493.52,
+    "date_ouverture": "2022-04-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a27",
+    "numero": "CPT-00192",
+    "membre_numero": "MBR-0099",
+    "type": "épargne",
+    "solde": 190581.77,
+    "date_ouverture": "2021-02-27T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a28",
+    "numero": "CPT-00193",
+    "membre_numero": "MBR-0082",
+    "type": "épargne",
+    "solde": 420392.26,
+    "date_ouverture": "2024-08-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a29",
+    "numero": "CPT-00194",
+    "membre_numero": "MBR-0086",
+    "type": "épargne",
+    "solde": 73111.8,
+    "date_ouverture": "2022-08-11T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a2a",
+    "numero": "CPT-00195",
+    "membre_numero": "MBR-0121",
+    "type": "épargne",
+    "solde": 380626.37,
+    "date_ouverture": "2023-08-19T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a2b",
+    "numero": "CPT-00196",
+    "membre_numero": "MBR-0115",
+    "type": "épargne",
+    "solde": 453399.46,
+    "date_ouverture": "2021-02-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a2c",
+    "numero": "CPT-00197",
+    "membre_numero": "MBR-0066",
+    "type": "épargne",
+    "solde": 418306.73,
+    "date_ouverture": "2024-01-29T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a2d",
+    "numero": "CPT-00198",
+    "membre_numero": "MBR-0156",
+    "type": "courant",
+    "solde": 60037.5,
+    "date_ouverture": "2022-08-14T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a2e",
+    "numero": "CPT-00199",
+    "membre_numero": "MBR-0061",
+    "type": "courant",
+    "solde": 65314.93,
+    "date_ouverture": "2022-05-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a2f",
+    "numero": "CPT-00200",
+    "membre_numero": "MBR-0108",
+    "type": "courant",
+    "solde": 36089.54,
+    "date_ouverture": "2023-10-21T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a30",
+    "numero": "CPT-00201",
+    "membre_numero": "MBR-0153",
+    "type": "épargne",
+    "solde": 317817.7,
+    "date_ouverture": "2024-03-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a31",
+    "numero": "CPT-00202",
+    "membre_numero": "MBR-0062",
+    "type": "épargne",
+    "solde": 149179.63,
+    "date_ouverture": "2021-01-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a32",
+    "numero": "CPT-00203",
+    "membre_numero": "MBR-0158",
+    "type": "courant",
+    "solde": 124079.3,
+    "date_ouverture": "2023-05-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a33",
+    "numero": "CPT-00204",
+    "membre_numero": "MBR-0048",
+    "type": "épargne",
+    "solde": 264124.86,
+    "date_ouverture": "2023-01-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a34",
+    "numero": "CPT-00205",
+    "membre_numero": "MBR-0018",
+    "type": "épargne",
+    "solde": 198274.6,
+    "date_ouverture": "2023-08-21T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a35",
+    "numero": "CPT-00206",
+    "membre_numero": "MBR-0012",
+    "type": "courant",
+    "solde": 490614.51,
+    "date_ouverture": "2022-06-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a36",
+    "numero": "CPT-00207",
+    "membre_numero": "MBR-0005",
+    "type": "courant",
+    "solde": 395317.41,
+    "date_ouverture": "2022-12-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a37",
+    "numero": "CPT-00208",
+    "membre_numero": "MBR-0062",
+    "type": "épargne",
+    "solde": 386893.18,
+    "date_ouverture": "2022-11-12T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a38",
+    "numero": "CPT-00209",
+    "membre_numero": "MBR-0035",
+    "type": "épargne",
+    "solde": 179388.03,
+    "date_ouverture": "2022-11-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a39",
+    "numero": "CPT-00210",
+    "membre_numero": "MBR-0045",
+    "type": "courant",
+    "solde": 490505.5,
+    "date_ouverture": "2023-09-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a3a",
+    "numero": "CPT-00211",
+    "membre_numero": "MBR-0047",
+    "type": "épargne",
+    "solde": 36234.77,
+    "date_ouverture": "2023-07-27T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a3b",
+    "numero": "CPT-00212",
+    "membre_numero": "MBR-0010",
+    "type": "courant",
+    "solde": 104787.54,
+    "date_ouverture": "2022-02-13T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a3c",
+    "numero": "CPT-00213",
+    "membre_numero": "MBR-0011",
+    "type": "courant",
+    "solde": 467018.64,
+    "date_ouverture": "2023-11-22T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a3d",
+    "numero": "CPT-00214",
+    "membre_numero": "MBR-0102",
+    "type": "courant",
+    "solde": 130390.31,
+    "date_ouverture": "2024-08-17T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a3e",
+    "numero": "CPT-00215",
+    "membre_numero": "MBR-0049",
+    "type": "courant",
+    "solde": 181702.22,
+    "date_ouverture": "2021-04-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a3f",
+    "numero": "CPT-00216",
+    "membre_numero": "MBR-0085",
+    "type": "courant",
+    "solde": 66615.13,
+    "date_ouverture": "2023-01-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a40",
+    "numero": "CPT-00217",
+    "membre_numero": "MBR-0112",
+    "type": "courant",
+    "solde": 372937.31,
+    "date_ouverture": "2023-03-03T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a41",
+    "numero": "CPT-00218",
+    "membre_numero": "MBR-0087",
+    "type": "épargne",
+    "solde": 250620.6,
+    "date_ouverture": "2023-10-16T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a42",
+    "numero": "CPT-00219",
+    "membre_numero": "MBR-0095",
+    "type": "courant",
+    "solde": 401568.3,
+    "date_ouverture": "2025-01-29T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a43",
+    "numero": "CPT-00220",
+    "membre_numero": "MBR-0109",
+    "type": "épargne",
+    "solde": 218150.54,
+    "date_ouverture": "2022-01-05T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a44",
+    "numero": "CPT-00221",
+    "membre_numero": "MBR-0140",
+    "type": "courant",
+    "solde": 163999.66,
+    "date_ouverture": "2021-06-13T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a45",
+    "numero": "CPT-00222",
+    "membre_numero": "MBR-0084",
+    "type": "courant",
+    "solde": 156715.45,
+    "date_ouverture": "2024-05-19T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a46",
+    "numero": "CPT-00223",
+    "membre_numero": "MBR-0110",
+    "type": "épargne",
+    "solde": 346433.58,
+    "date_ouverture": "2022-12-21T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a47",
+    "numero": "CPT-00224",
+    "membre_numero": "MBR-0115",
+    "type": "épargne",
+    "solde": 364773.13,
+    "date_ouverture": "2022-12-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a48",
+    "numero": "CPT-00225",
+    "membre_numero": "MBR-0158",
+    "type": "courant",
+    "solde": 140904.9,
+    "date_ouverture": "2021-04-28T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a49",
+    "numero": "CPT-00226",
+    "membre_numero": "MBR-0020",
+    "type": "courant",
+    "solde": 184839.01,
+    "date_ouverture": "2024-10-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a4a",
+    "numero": "CPT-00227",
+    "membre_numero": "MBR-0041",
+    "type": "épargne",
+    "solde": 75675.84,
+    "date_ouverture": "2024-05-29T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a4b",
+    "numero": "CPT-00228",
+    "membre_numero": "MBR-0113",
+    "type": "épargne",
+    "solde": 67483.86,
+    "date_ouverture": "2022-04-29T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a4c",
+    "numero": "CPT-00229",
+    "membre_numero": "MBR-0094",
+    "type": "courant",
+    "solde": 194512.93,
+    "date_ouverture": "2024-03-07T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a4d",
+    "numero": "CPT-00230",
+    "membre_numero": "MBR-0009",
+    "type": "épargne",
+    "solde": 341135.72,
+    "date_ouverture": "2023-01-30T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a4e",
+    "numero": "CPT-00231",
+    "membre_numero": "MBR-0096",
+    "type": "courant",
+    "solde": 382726.81,
+    "date_ouverture": "2024-03-21T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a4f",
+    "numero": "CPT-00232",
+    "membre_numero": "MBR-0036",
+    "type": "courant",
+    "solde": 202026.85,
+    "date_ouverture": "2024-08-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a50",
+    "numero": "CPT-00233",
+    "membre_numero": "MBR-0072",
+    "type": "épargne",
+    "solde": 480457.43,
+    "date_ouverture": "2021-02-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a51",
+    "numero": "CPT-00234",
+    "membre_numero": "MBR-0048",
+    "type": "courant",
+    "solde": 261283.91,
+    "date_ouverture": "2024-02-25T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a52",
+    "numero": "CPT-00235",
+    "membre_numero": "MBR-0031",
+    "type": "courant",
+    "solde": 388607.42,
+    "date_ouverture": "2024-12-12T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a53",
+    "numero": "CPT-00236",
+    "membre_numero": "MBR-0115",
+    "type": "épargne",
+    "solde": 498200.73,
+    "date_ouverture": "2022-08-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a54",
+    "numero": "CPT-00237",
+    "membre_numero": "MBR-0126",
+    "type": "épargne",
+    "solde": 65705.52,
+    "date_ouverture": "2021-06-01T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a55",
+    "numero": "CPT-00238",
+    "membre_numero": "MBR-0116",
+    "type": "épargne",
+    "solde": 449846.12,
+    "date_ouverture": "2023-07-01T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a56",
+    "numero": "CPT-00239",
+    "membre_numero": "MBR-0023",
+    "type": "courant",
+    "solde": 335580.7,
+    "date_ouverture": "2024-12-24T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a57",
+    "numero": "CPT-00240",
+    "membre_numero": "MBR-0017",
+    "type": "courant",
+    "solde": 446209.18,
+    "date_ouverture": "2021-11-19T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a58",
+    "numero": "CPT-00241",
+    "membre_numero": "MBR-0045",
+    "type": "courant",
+    "solde": 256834.09,
+    "date_ouverture": "2021-09-06T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a59",
+    "numero": "CPT-00242",
+    "membre_numero": "MBR-0052",
+    "type": "épargne",
+    "solde": 122184.41,
+    "date_ouverture": "2023-10-09T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a5a",
+    "numero": "CPT-00243",
+    "membre_numero": "MBR-0007",
+    "type": "courant",
+    "solde": 279240.61,
+    "date_ouverture": "2023-01-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a5b",
+    "numero": "CPT-00244",
+    "membre_numero": "MBR-0120",
+    "type": "épargne",
+    "solde": 307914.44,
+    "date_ouverture": "2021-06-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a5c",
+    "numero": "CPT-00245",
+    "membre_numero": "MBR-0017",
+    "type": "courant",
+    "solde": 202089.19,
+    "date_ouverture": "2025-01-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a5d",
+    "numero": "CPT-00246",
+    "membre_numero": "MBR-0123",
+    "type": "courant",
+    "solde": 385736.45,
+    "date_ouverture": "2024-03-23T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a5e",
+    "numero": "CPT-00247",
+    "membre_numero": "MBR-0019",
+    "type": "épargne",
+    "solde": 486327.97,
+    "date_ouverture": "2024-08-08T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a5f",
+    "numero": "CPT-00248",
+    "membre_numero": "MBR-0019",
+    "type": "courant",
+    "solde": 235587.43,
+    "date_ouverture": "2023-11-26T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a60",
+    "numero": "CPT-00249",
+    "membre_numero": "MBR-0089",
+    "type": "épargne",
+    "solde": 439590.28,
+    "date_ouverture": "2024-02-04T00:00:00"
+  },
+  {
+    "_id": "6ac5033cb6ebf60054604a61",
+    "numero": "CPT-00250",
+    "membre_numero": "MBR-0151",
+    "type": "épargne",
+    "solde": 385051.91,
+    "date_ouverture": "2021-09-22T00:00:00"
+  }
+]
