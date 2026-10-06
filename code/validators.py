@@ -78,7 +78,52 @@ def valider_compte(numero, membre_numero, type_compte, solde_initial, db=None):
             
     return True
 
-def valider_virement(compte_src, compte_dest, montant, db=None):
+def valider_canal(canal):
+    """
+    Vérifie qu'un canal de transaction est valide (agence ou mobile_money).
+    """
+    canaux_valides = ["agence", "mobile_money"]
+    c_clean = str(canal).lower().strip() if canal else ""
+    if c_clean not in canaux_valides:
+        raise ValidationError(f"Le canal de transaction '{canal}' n'est pas valide. Veuillez choisir entre 'agence' ou 'mobile_money'.")
+    return c_clean
+
+def valider_depot(compte_numero, montant, canal="agence", db=None):
+    """
+    Valide un dépôt sur un compte.
+    """
+    cpt = str(compte_numero).strip() if compte_numero else ""
+    if not cpt:
+        raise ValidationError("Le numéro de compte est obligatoire pour un dépôt.")
+    mtt = valider_montant(montant, "Le montant du dépôt")
+    c_canal = valider_canal(canal)
+    
+    if db is not None:
+        compte_doc = db.comptes.find_one({"numero": cpt})
+        if not compte_doc:
+            raise ValidationError(f"Le compte numéro '{cpt}' n'existe pas dans la base de données.")
+    return True
+
+def valider_retrait(compte_numero, montant, canal="agence", db=None):
+    """
+    Valide un retrait sur un compte avec contrôle de solde disponible.
+    """
+    cpt = str(compte_numero).strip() if compte_numero else ""
+    if not cpt:
+        raise ValidationError("Le numéro de compte est obligatoire pour un retrait.")
+    mtt = valider_montant(montant, "Le montant du retrait")
+    c_canal = valider_canal(canal)
+    
+    if db is not None:
+        compte_doc = db.comptes.find_one({"numero": cpt})
+        if not compte_doc:
+            raise ValidationError(f"Le compte numéro '{cpt}' n'existe pas dans la base de données.")
+        solde_dispo = compte_doc.get("solde", 0.0)
+        if solde_dispo < mtt:
+            raise ValidationError(f"Retrait refusé : Solde insuffisant sur le compte '{cpt}'. Solde actuel : {solde_dispo:,.2f} FCFA, montant demandé : {mtt:,.2f} FCFA.")
+    return True
+
+def valider_virement(compte_src, compte_dest, montant, canal="agence", db=None):
     """
     Valide une opération de virement entre deux comptes.
     """
@@ -93,6 +138,7 @@ def valider_virement(compte_src, compte_dest, montant, db=None):
         raise ValidationError("Le compte expéditeur et le compte destinataire doivent être deux comptes différents.")
     
     mtt = valider_montant(montant, "Le montant du virement")
+    c_canal = valider_canal(canal)
     
     if db is not None:
         compte_source_doc = db.comptes.find_one({"numero": c_src})
@@ -104,7 +150,7 @@ def valider_virement(compte_src, compte_dest, montant, db=None):
         
         solde_dispo = compte_source_doc.get("solde", 0.0)
         if solde_dispo < mtt:
-            raise ValidationError(f"Solde insuffisant sur le compte '{c_src}'. Solde actuel : {solde_dispo:,.0f} FCFA, montant demandé : {mtt:,.0f} FCFA.")
+            raise ValidationError(f"Virement refusé : Solde insuffisant sur le compte '{c_src}'. Solde actuel : {solde_dispo:,.2f} FCFA, montant demandé : {mtt:,.2f} FCFA.")
             
     return True
 

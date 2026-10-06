@@ -378,30 +378,33 @@ def depot_compte(compte_numero, montant, canal="agence", db=None):
     """
     if db is None:
         db = get_db()
-    if montant <= 0:
-        print_erreur("Le montant du dépôt doit être une valeur supérieure à 0.")
+    try:
+        validators.valider_depot(compte_numero, montant, canal=canal, db=db)
+        canal_clean = validators.valider_canal(canal)
+        mtt = float(montant)
+        compte_numero = str(compte_numero).strip()
+
+        # Mettre à jour le solde
+        db.comptes.update_one({"numero": compte_numero}, {"$inc": {"solde": mtt}})
+
+        # Enregistrer la transaction
+        db.transactions.insert_one({
+            "transaction_id": f"TXN-{int(datetime.now().timestamp()*1000)}",
+            "compte_numero": compte_numero,
+            "type": "dépôt",
+            "montant": mtt,
+            "date": datetime.now(),
+            "canal": canal_clean
+        })
+
+        print_succes(f"Dépôt de {mtt} FCFA réussi sur le compte {compte_numero} (Canal: {canal_clean}).")
+        return True
+    except ValidationError as ve:
+        print_erreur(f"[VALIDATION] {ve}")
         return False
-
-    compte = db.comptes.find_one({"numero": compte_numero})
-    if not compte:
-        print_erreur(f"Le compte numéro '{compte_numero}' n'existe pas dans le système.")
+    except PyMongoError as e:
+        print_erreur(f"[MONGODB] {e}")
         return False
-
-    # Mettre à jour le solde
-    db.comptes.update_one({"numero": compte_numero}, {"$inc": {"solde": float(montant)}})
-
-    # Enregistrer la transaction
-    db.transactions.insert_one({
-        "transaction_id": f"TXN-{int(datetime.now().timestamp()*1000)}",
-        "compte_numero": compte_numero,
-        "type": "dépôt",
-        "montant": float(montant),
-        "date": datetime.now(),
-        "canal": canal
-    })
-
-    print_succes(f"Dépôt de {montant} FCFA réussi sur le compte {compte_numero}.")
-    return True
 
 def retrait_compte(compte_numero, montant, canal="agence", db=None):
     """
@@ -409,32 +412,31 @@ def retrait_compte(compte_numero, montant, canal="agence", db=None):
     """
     if db is None:
         db = get_db()
-    if montant <= 0:
-        print_erreur("Le montant du retrait doit être une valeur supérieure à 0.")
+    try:
+        validators.valider_retrait(compte_numero, montant, canal=canal, db=db)
+        canal_clean = validators.valider_canal(canal)
+        mtt = float(montant)
+        compte_numero = str(compte_numero).strip()
+
+        db.comptes.update_one({"numero": compte_numero}, {"$inc": {"solde": -mtt}})
+
+        db.transactions.insert_one({
+            "transaction_id": f"TXN-{int(datetime.now().timestamp()*1000)}",
+            "compte_numero": compte_numero,
+            "type": "retrait",
+            "montant": mtt,
+            "date": datetime.now(),
+            "canal": canal_clean
+        })
+
+        print_succes(f"Retrait de {mtt} FCFA effectué sur le compte {compte_numero} (Canal: {canal_clean}).")
+        return True
+    except ValidationError as ve:
+        print_erreur(f"[VALIDATION] {ve}")
         return False
-
-    compte = db.comptes.find_one({"numero": compte_numero})
-    if not compte:
-        print_erreur(f"Le compte numéro '{compte_numero}' n'existe pas dans le système.")
+    except PyMongoError as e:
+        print_erreur(f"[MONGODB] {e}")
         return False
-
-    if compte.get("solde", 0.0) < montant:
-        print_erreur(f"Retrait refusé : solde insuffisant (Solde actuel : {compte.get('solde')} FCFA, Montant demandé : {montant} FCFA).")
-        return False
-
-    db.comptes.update_one({"numero": compte_numero}, {"$inc": {"solde": -float(montant)}})
-
-    db.transactions.insert_one({
-        "transaction_id": f"TXN-{int(datetime.now().timestamp()*1000)}",
-        "compte_numero": compte_numero,
-        "type": "retrait",
-        "montant": float(montant),
-        "date": datetime.now(),
-        "canal": canal
-    })
-
-    print_succes(f"Retrait de {montant} FCFA effectué sur le compte {compte_numero}.")
-    return True
 
 def virement_comptes(compte_src, compte_dest, montant, canal="agence", db=None):
     """
@@ -444,80 +446,76 @@ def virement_comptes(compte_src, compte_dest, montant, canal="agence", db=None):
         db = get_db()
     client = get_client()
 
-    if montant <= 0:
-        print_erreur("Le montant du virement doit être une valeur supérieure à 0.")
-        return False
-
-    c_src = db.comptes.find_one({"numero": compte_src})
-    c_dst = db.comptes.find_one({"numero": compte_dest})
-
-    if not c_src:
-        print_erreur(f"Le compte source '{compte_src}' n'existe pas dans la base.")
-        return False
-    if not c_dst:
-        print_erreur(f"Le compte destinataire '{compte_dest}' n'existe pas dans la base.")
-        return False
-
-    if c_src.get("solde", 0.0) < montant:
-        print_erreur(f"Virement refusé : solde insuffisant sur le compte source {compte_src} (Solde actuel : {c_src.get('solde')} FCFA).")
-        return False
-
-    # Utilisation d'une transaction ACID MongoDB
     try:
-        with client.start_session() as session:
-            with session.start_transaction():
-                # Retrait source
-                db.comptes.update_one({"numero": compte_src}, {"$inc": {"solde": -float(montant)}}, session=session)
-                # Dépôt destination
-                db.comptes.update_one({"numero": compte_dest}, {"$inc": {"solde": float(montant)}}, session=session)
+        validators.valider_virement(compte_src, compte_dest, montant, canal=canal, db=db)
+        canal_clean = validators.valider_canal(canal)
+        mtt = float(montant)
+        compte_src = str(compte_src).strip()
+        compte_dest = str(compte_dest).strip()
 
-                # Transactions enregistrées
-                now = datetime.now()
-                db.transactions.insert_one({
-                    "transaction_id": f"TXN-VIR-OUT-{int(now.timestamp()*1000)}",
-                    "compte_numero": compte_src,
-                    "type": "virement (débit)",
-                    "montant": float(montant),
-                    "date": now,
-                    "canal": canal
-                }, session=session)
+        # Utilisation d'une transaction ACID MongoDB
+        try:
+            with client.start_session() as session:
+                with session.start_transaction():
+                    # Retrait source
+                    db.comptes.update_one({"numero": compte_src}, {"$inc": {"solde": -mtt}}, session=session)
+                    # Dépôt destination
+                    db.comptes.update_one({"numero": compte_dest}, {"$inc": {"solde": mtt}}, session=session)
 
-                db.transactions.insert_one({
-                    "transaction_id": f"TXN-VIR-IN-{int(now.timestamp()*1000)}",
-                    "compte_numero": compte_dest,
-                    "type": "virement (crédit)",
-                    "montant": float(montant),
-                    "date": now,
-                    "canal": canal
-                }, session=session)
+                    # Transactions enregistrées
+                    now = datetime.now()
+                    db.transactions.insert_one({
+                        "transaction_id": f"TXN-VIR-OUT-{int(now.timestamp()*1000)}",
+                        "compte_numero": compte_src,
+                        "type": "virement (débit)",
+                        "montant": mtt,
+                        "date": now,
+                        "canal": canal_clean
+                    }, session=session)
 
-        print(f"✓ Virement de {montant} FCFA entre {compte_src} et {compte_dest} effectué avec succès (Transaction ACID).")
-        return True
+                    db.transactions.insert_one({
+                        "transaction_id": f"TXN-VIR-IN-{int(now.timestamp()*1000)}",
+                        "compte_numero": compte_dest,
+                        "type": "virement (crédit)",
+                        "montant": mtt,
+                        "date": now,
+                        "canal": canal_clean
+                    }, session=session)
 
-    except Exception as e:
-        # Fallback pour MongoDB Standalone sans replica set
-        print(f"[AVERTISSEMENT TRANSACTION SESSION] {e}. Exécution fallback sans session replica set...")
-        db.comptes.update_one({"numero": compte_src}, {"$inc": {"solde": -float(montant)}})
-        db.comptes.update_one({"numero": compte_dest}, {"$inc": {"solde": float(montant)}})
-        now = datetime.now()
-        db.transactions.insert_one({
-            "transaction_id": f"TXN-VIR-OUT-{int(now.timestamp()*1000)}",
-            "compte_numero": compte_src,
-            "type": "virement (débit)",
-            "montant": float(montant),
-            "date": now,
-            "canal": canal
-        })
-        db.transactions.insert_one({
-            "transaction_id": f"TXN-VIR-IN-{int(now.timestamp()*1000)}",
-            "compte_numero": compte_dest,
-            "type": "virement (crédit)",
-            "montant": float(montant),
-            "date": now,
-            "canal": canal
-        })
-        print(f"✓ Virement de {montant} FCFA entre {compte_src} et {compte_dest} effectué (Fallback).")
-        return True
+            print_succes(f"Virement de {mtt} FCFA entre {compte_src} et {compte_dest} effectué avec succès (Canal: {canal_clean}, Transaction ACID).")
+            return True
+
+        except Exception as e:
+            # Fallback pour MongoDB Standalone sans replica set
+            print_info(f"[AVERTISSEMENT TRANSACTION SESSION] Exécution fallback sans session replica set...")
+            db.comptes.update_one({"numero": compte_src}, {"$inc": {"solde": -mtt}})
+            db.comptes.update_one({"numero": compte_dest}, {"$inc": {"solde": mtt}})
+            now = datetime.now()
+            db.transactions.insert_one({
+                "transaction_id": f"TXN-VIR-OUT-{int(now.timestamp()*1000)}",
+                "compte_numero": compte_src,
+                "type": "virement (débit)",
+                "montant": mtt,
+                "date": now,
+                "canal": canal_clean
+            })
+            db.transactions.insert_one({
+                "transaction_id": f"TXN-VIR-IN-{int(now.timestamp()*1000)}",
+                "compte_numero": compte_dest,
+                "type": "virement (crédit)",
+                "montant": mtt,
+                "date": now,
+                "canal": canal_clean
+            })
+            print_succes(f"Virement de {mtt} FCFA entre {compte_src} et {compte_dest} effectué (Canal: {canal_clean}, Fallback).")
+            return True
+
+    except ValidationError as ve:
+        print_erreur(f"[VALIDATION] {ve}")
+        return False
+    except PyMongoError as e:
+        print_erreur(f"[MONGODB] {e}")
+        return False
 
 def payer_echeance_pret(code_pret, numero_echeance, db=None):
     """

@@ -113,19 +113,22 @@ def menu_terminal():
             print("b. Retrait sur compte")
             print("c. Virement entre deux comptes (Transaction Multi-documents ACID)")
             sub = input("Sous-choix (a/b/c) : ").strip().lower()
-            if sub == "a":
-                num = input("Numéro de compte : ").strip()
-                mtt = float(input("Montant à déposer : "))
-                crud.depot_compte(num, mtt, db=db)
-            elif sub == "b":
-                num = input("Numéro de compte : ").strip()
-                mtt = float(input("Montant à retirer : "))
-                crud.retrait_compte(num, mtt, db=db)
-            elif sub == "c":
-                src = input("Compte source : ").strip()
-                dst = input("Compte destination : ").strip()
-                mtt = float(input("Montant virement : "))
-                crud.virement_comptes(src, dst, mtt, db=db)
+            if sub in ["a", "b", "c"]:
+                canal = input("Canal de transaction (agence/mobile_money, défaut 'agence') : ").strip().lower() or "agence"
+                if sub == "a":
+                    num = input("Numéro de compte : ").strip()
+                    mtt = input("Montant à déposer (FCFA) : ").strip()
+                    crud.depot_compte(num, mtt, canal=canal, db=db)
+                elif sub == "b":
+                    num = input("Numéro de compte : ").strip()
+                    mtt = input("Montant à retirer (FCFA) : ").strip()
+                    crud.retrait_compte(num, mtt, canal=canal, db=db)
+                elif sub == "c":
+                    src = input("Compte source : ").strip()
+                    dst = input("Compte destination : ").strip()
+                    mtt = input("Montant virement (FCFA) : ").strip()
+                    crud.virement_comptes(src, dst, mtt, canal=canal, db=db)
+
         elif choix == "7":
             print("\n--- PAIEMENT ECHEANCE / COTISATION & CREATION ---")
             print("a. Payer échéance de prêt")
@@ -437,6 +440,11 @@ def mode_tkinter():
     cb_tx_dst = ttk.Combobox(tx_form, width=18)
     cb_tx_dst.grid(row=0, column=5, padx=5, pady=5)
 
+    ttk.Label(tx_form, text="Canal:").grid(row=0, column=6, padx=5, pady=5)
+    cb_tx_canal = ttk.Combobox(tx_form, values=["agence", "mobile_money"], width=14, state="readonly")
+    cb_tx_canal.set("agence")
+    cb_tx_canal.grid(row=0, column=7, padx=5, pady=5)
+
     lbl_tx_error = tk.Label(tab_tx, text="", font=("Segoe UI", 10, "bold"), bg="#181825", fg="#f38ba8")
     lbl_tx_error.pack(anchor="w", padx=5)
 
@@ -493,15 +501,17 @@ def mode_tkinter():
     def gui_depot():
         lbl_tx_error.config(text="")
         cpt = cb_tx_cpt.get().strip()
+        canal = cb_tx_canal.get().strip()
         if not cpt:
             lbl_tx_error.config(text="[ERREUR] Aucun compte sélectionné.")
             messagebox.showerror("Compte Manquant", "Veuillez sélectionner un compte dans la liste déroulante ou le saisir.")
             return
         try:
             val_mtt = e_tx_mtt.get().strip()
-            mtt = validators.valider_montant(val_mtt, "Le montant du dépôt")
-            if crud.depot_compte(cpt, mtt, db=db):
-                messagebox.showinfo("Succès Dépôt", f"Dépôt de {formater_montant(mtt)} réussi sur le compte {cpt} !")
+            validators.valider_depot(cpt, val_mtt, canal=canal, db=db)
+            mtt = float(val_mtt)
+            if crud.depot_compte(cpt, mtt, canal=canal, db=db):
+                messagebox.showinfo("Succès Dépôt", f"Dépôt de {formater_montant(mtt)} réussi sur le compte {cpt} via {canal} !")
                 load_transactions()
                 load_membres()
             else:
@@ -517,15 +527,17 @@ def mode_tkinter():
     def gui_retrait():
         lbl_tx_error.config(text="")
         cpt = cb_tx_cpt.get().strip()
+        canal = cb_tx_canal.get().strip()
         if not cpt:
             lbl_tx_error.config(text="[ERREUR] Aucun compte sélectionné.")
             messagebox.showerror("Compte Manquant", "Veuillez sélectionner un compte dans la liste déroulante ou le saisir.")
             return
         try:
             val_mtt = e_tx_mtt.get().strip()
-            mtt = validators.valider_montant(val_mtt, "Le montant du retrait")
-            if crud.retrait_compte(cpt, mtt, db=db):
-                messagebox.showinfo("Succès Retrait", f"Retrait de {formater_montant(mtt)} effectué sur {cpt} !")
+            validators.valider_retrait(cpt, val_mtt, canal=canal, db=db)
+            mtt = float(val_mtt)
+            if crud.retrait_compte(cpt, mtt, canal=canal, db=db):
+                messagebox.showinfo("Succès Retrait", f"Retrait de {formater_montant(mtt)} effectué sur {cpt} via {canal} !")
                 load_transactions()
                 load_membres()
             else:
@@ -542,12 +554,13 @@ def mode_tkinter():
         lbl_tx_error.config(text="")
         src = cb_tx_cpt.get().strip()
         dst = cb_tx_dst.get().strip()
+        canal = cb_tx_canal.get().strip()
         try:
             val_mtt = e_tx_mtt.get().strip()
-            validators.valider_virement(src, dst, val_mtt, db=db)
+            validators.valider_virement(src, dst, val_mtt, canal=canal, db=db)
             mtt = float(val_mtt)
-            if crud.virement_comptes(src, dst, mtt, db=db):
-                messagebox.showinfo("Virement ACID Réussi", f"Virement de {formater_montant(mtt)} entre {src} et {dst} exécuté avec succès (Session ACID MongoDB) !")
+            if crud.virement_comptes(src, dst, mtt, canal=canal, db=db):
+                messagebox.showinfo("Virement ACID Réussi", f"Virement de {formater_montant(mtt)} entre {src} et {dst} exécuté avec succès via {canal} (Session ACID) !")
                 load_transactions()
                 load_membres()
             else:
