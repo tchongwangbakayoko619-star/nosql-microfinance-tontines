@@ -3,7 +3,7 @@ import sys
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
 
-MONGO_URI = "mongodb://localhost:27017/"
+MONGO_URI = "/"
 MONGODB_URI = MONGO_URI
 
 DATABASE_NAME = "projet9_microfinance"
