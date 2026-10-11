@@ -3,7 +3,7 @@ import sys
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
 
-MONGO_URI = "valeur_uri"
+MONGO_URI = "valeur_uri mettre uri local ou atlas"
 MONGODB_URI = MONGO_URI
 
 DATABASE_NAME = "projet9_microfinance"
